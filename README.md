@@ -30,6 +30,8 @@ UrlToolkit {
 
 The only DB driver I've tested this with is MySQL - others I'll look at adding eventually - it uses PDO for the database interaction.
 
+Requires mcrypt
+
 /public/ holds the CSS, images, JS etc.
 /application/views/ holds the view template files.
 
