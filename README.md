@@ -20,6 +20,7 @@ For Hiawatha do the following:
 1. Set the /public/ dir as the website root, e.g. /path/to/mfyu/public
 2. Make sure mfyu/tmp/* is writable by the webserver owner (e.g. www-data, apache, whatever -- this applies to any webserver, not just Hiawatha)
 3. Use the following Toolkit:
+
 UrlToolkit {
    ToolkitID = mfyu
    RequestURI exists Return
