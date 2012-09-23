@@ -121,6 +121,7 @@ p { margin: 0 0 10px 0; }
 
 div.copy { margin-top: 30px; padding-bottom: 20px; border-bottom: 1px solid #484A4C; text-align: left; }
 div.copy p { margin-bottom: 20px; }
+#maffyoo div.copy p a { text-decoration: underline; }
 div.errors { margin: 0 0 15px 0; font-weight: bold; font-weight: bold; font-size: 100%; color: #78102F; margin-top: 20px; }
 div.errors p { margin: 0 0 5px 0; }
 
