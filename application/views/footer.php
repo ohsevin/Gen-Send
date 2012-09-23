@@ -2,6 +2,7 @@
 	
 	<!-- To err is human... to really foul up requires the root password. -->
 	<footer>
+		<h4><a href="about/">About Gen&amp;Send</a></h4>
 		<p>Powered by <a href="<?php echo GEN_SEND_URL; ?>">Gen&ampSend</a> - Copyright &copy; All Rights Reserved.</p>
 		<div id="footerMenu">
 			
