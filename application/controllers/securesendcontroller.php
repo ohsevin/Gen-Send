@@ -17,11 +17,7 @@ class SecuresendController extends MFYU_VanillaController {
     public function index()
     {
         $password = '';
-        if($this->url->segment(3) != '')
-        {
-            $password = $this->url->segment(3);
-        }
-        
+		
         $this->set('default_password', $password);
         
         $default_expire_time = 7;
