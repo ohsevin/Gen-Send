@@ -14,10 +14,10 @@
 		<h2>URL Generated:</h2>
 		<p>&nbsp;</p>
 		<p>
-			The following URL will link to your password securely:
+			<?php echo site_url() . 'securesend/v/' . $url ;?>
 		</p>
 		<p>
-			<?php echo site_url() . 'securesend/v/' . $url ;?>
+			&nbsp;
 		</p>
 		<?php else: ?>
 		<form action="<?=site_url();?>securesend/" method="post">

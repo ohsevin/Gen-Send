@@ -7,9 +7,9 @@
 			<?php endforeach; ?>
 		
 		<?php else: ?>
-		<h3>Password:</h3>
+		<h3 class="password_title">Your password is:</h3>
 		<p>&nbsp;</p>
-		<p>
+		<p class="password">
 			<?php echo $password; ?>
 		</p>
 		<p>&nbsp;</p>
