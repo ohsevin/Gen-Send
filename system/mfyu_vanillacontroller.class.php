@@ -26,13 +26,12 @@ class MFYU_VanillaController {
         
         foreach($autoload['libraries'] as $key => $library)
         {
-            $extras = '';
-            
-            if($library == 'database')
+            if($library == 'database') // always set $db for 'database' library for $this->db
             {
                 $key = 'db';
-            } // always set $db for 'database' library for $this->db
-            $this->load_library($library, $key, $extras = '');
+            }
+            
+            $this->load_library($library, $key);
         }
         
         $this->_controller = ucfirst($controller);
@@ -40,7 +39,7 @@ class MFYU_VanillaController {
         
         $this->no_render_chrome = 0;
         $this->render = 1;
-        $this->_template = new Template($controller,$action);
+        $this->_template = new Template($controller, $action);
     }
     
     function set_template($template)
@@ -78,16 +77,14 @@ class MFYU_VanillaController {
         
         $model_file = ROOT . DS . 'application' . DS . 'models' . DS . strtolower($model) . '.php';
         
-        // if the model doesn't exist - create it
+        // if the model doesn't exist - create the file with it
         if(!file_exists($model_file))
         {
             $model_file_content = '<?php if (!defined(\'BASE_PATH\')) exit(\'No direct script access allowed\');' . PHP_EOL;
             $model_file_content .= '' . PHP_EOL;
             $model_file_content .= 'class ' . $model . ' extends ' . strtoupper(SYSTEM_PREPEND) . '_VanillaModel {' . PHP_EOL;
             $model_file_content .= '        ' . PHP_EOL;
-            $model_file_content .= '        var $hasMany = array();' . PHP_EOL;
-            $model_file_content .= '        var $hasOne = array();' . PHP_EOL;
-            $model_file_content .= '        var $abstract = true; /* used so table description isn\'t done */' . PHP_EOL;
+            $model_file_content .= '        protected $_abstract = true; /* used so table description isn\'t done */' . PHP_EOL;
             $model_file_content .= '        ' . PHP_EOL;
             $model_file_content .= '}' . PHP_EOL;
             
