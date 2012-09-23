@@ -20,6 +20,7 @@
 	<header>
 		<div class="wrapper">
 			<h1><a href="<?=site_url();?>">Gen&amp;Send</a></h1>
+			<h3>A PHP Password Creation &amp; Push Application</h3>
 		</div>
 	</header>
 <div id="notices"></div>
