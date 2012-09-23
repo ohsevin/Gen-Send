@@ -1,4 +1,4 @@
-MFYU_Password_Generator
+Gen&Send
 ==============
 
 Installation:
