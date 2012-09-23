@@ -31,7 +31,7 @@ class MFYU_VanillaModel {
         
         $this->_table = strtolower($this->inflect->pluralize($this->_model));
         
-        if(!$this->abstract) // if it's an 'abstract' class, there'll be no database to describe
+        if(!$this->_abstract) // if it's an 'abstract' class, there'll be no database to describe
         {
             $this->_describe();
         }

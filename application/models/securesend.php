@@ -2,7 +2,7 @@
 
 class Securesend extends MFYU_VanillaModel {
         
-    protected $abstract = false;
+    protected $_abstract = false;
     
     public function __construct()
     {
