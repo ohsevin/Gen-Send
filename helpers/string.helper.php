@@ -5,7 +5,7 @@
 *
 * @package    Utils
 * @author     Matt Brunt (http://maffyoo.co.uk)
-* @version    0.3.2
+* @version    0.3.3
 */
 
 class MFYU_String {
@@ -28,7 +28,7 @@ class MFYU_String {
                 'punctuation'               =>        false
     );
     
-    protected static $character_set = '';
+    protected $_character_set = '';
     
     public static $phonetic = array(
     
@@ -96,16 +96,14 @@ class MFYU_String {
     /**
      *    Generates a random string of a length specified
      *
-     *    @param    int        The length of the string to return
-     *    @param    array    The options to determine our character set to use
-     *    @return    string    The random string generated
+     *    @param    int         The length of the string to return
+     *    @param    array      The options to determine our character set to use
+     *    @return   string
      *
      *    @access    public
      */
     public function generate_random_string($length = 8, $options = array())
     {
-        $string = '';
-        
         // If no options set, use default ones.
         if(empty($options))
         {
@@ -117,30 +115,25 @@ class MFYU_String {
         {
             if($use && array_key_exists($option, self::$characters))
             {
-                self::$character_set .= self::$characters[$option];
+                $this->_character_set .= self::$characters[$option];
             }
         }
         
-        // Let's shuffle the string, why? Because we can, don't have to, but 'more random' is good right?
-        self::$character_set = str_shuffle(self::$character_set);
+        // Let's shuffle the character set to make it randomly ordered
+        $this->_character_set = str_shuffle($this->_character_set);
         
-        // Generate our string
-        while(strlen($string) < $length)
-        {
-            $string .= self::$character_set[rand(0, strlen(self::$character_set) - 1)];
-        }
-        
-        return $string;
+        // Return our string (shuffle again just because)
+        return substr(str_shuffle($this->_character_set), 0, $length);
     }
     
     /**
      *    Convert a string to the phonetic alphabet.
      *
-     *    @param    string    The string to convert
-     *    @param    boolean    Match on the case, so A lists as ALPHA and a lists as alpha
-     *    @return    string    A string in phonetic
+     *    @param    string      The string to convert
+     *    @param    boolean     Match on the case, so A lists as ALPHA and a lists as alpha
+     *    @return   string    
      *
-     *    @access    public
+     *    @access   public
      */
     public function to_phonetic($string = '', $match_case = true, $separator = ' - ')
     {
@@ -150,12 +143,14 @@ class MFYU_String {
             return '';
         }
         
+        $phonetic = array();
+        
         // split our string so we have individual characters to work with
         $characters = str_split($string);
         
+        // loop to add phonetic meaning to each character in the string.
         foreach($characters as $position => $character)
         {
-        
             if(array_key_exists($character, self::$phonetic) && $match_case) // check as they are (lowercase)
             {
                 $phonetic[$position] = self::$phonetic[$character];
@@ -176,79 +171,13 @@ class MFYU_String {
         
         return implode($separator, $phonetic); // return our phonetic string separated by our separator
     }
-    
-    /**
-     *    Convert a string to binary.
-     *
-     *    @param    string    The string to convert
-     *    @param    string    The separator for our returned string
-     *    @param    int        Value to pad the binary to, PHP doesn't output to 8-bit binary by default.
-     *    @return    string    A string, but in binary format
-     *
-     *    @access    public
-     */
-    public function string_to_binary($string = '', $separator = ' ', $bit_binary = 8)
-    {
-        // split our string so we have individual characters to work with
-        $characters = str_split($string);
-        $binary = array();
-        
-        foreach($characters as $position => $character)
-        {
-            // pad to X-bit binary - bad? Maybe...
-            $binary[$position] = str_pad(decbin(ord($character)), $bit_binary, '0', STR_PAD_LEFT);
-        }
-        
-        return implode($separator, $binary);
-    }
-    
-    /**
-     *    Remove all non alpha numeric or space characters.
-     *
-     *    @param    string    The string to replace
-     *    @return    string    The replaced string
-     *
-     *    @access    public
-     */
-    public function strip_non_alpha_numeric_spaces($string = '')
-    {
-        return preg_replace('/[^a-z0-9 ]/i', '', $string);
-    }
-    
-    /**
-     *    Searches through a string to convert all links to hyperlinks
-     *
-     *    @param    string    The string to replace
-     *    @return    string    The replaced string
-     *
-     *    @access    public
-     */
-    public function urls_to_links($string = '')
-    {
-        $reg_ex_url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-        
-        if (preg_match_all($reg_ex_url, $string, $urls))
-        {
-            foreach($urls[0] as $url){
 
-                $position = strpos($string, ' ' . $url) + 1;
-                $string = substr_replace($string, '', $position, strlen($url));
-                $string = substr_replace($string, '' . $url . '', $position, 0);
-            }
-            return $string;
-        }
-        else
-        {
-            return $string;
-        }
-    }
-    
     /**
      *    Returns a numeric value of the strength score of a string.
      *    Higher score if it matches multiple conditions
      *
-     *    @param    string    The string to check
-     *    @return    int        The score of the string (0-6)
+     *    @param    string  The string to check
+     *    @return   int
      *
      *    @access    public
      */
