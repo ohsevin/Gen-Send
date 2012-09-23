@@ -61,15 +61,15 @@ class Inflection
     );
 
     static $irregular = array(
-        'move'   => 'moves',
-        'foot'   => 'feet',
-        'goose'  => 'geese',
-        'sex'    => 'sexes',
-        'child'  => 'children',
-        'man'    => 'men',
-        'tooth'  => 'teeth',
-        'person' => 'people',
-        'admin' => 'admin'
+        'move'      => 'moves',
+        'foot'      => 'feet',
+        'goose'     => 'geese',
+        'sex'       => 'sexes',
+        'child'     => 'children',
+        'man'       => 'men',
+        'tooth'     => 'teeth',
+        'person'    => 'people',
+        'admin'     => 'admin'
     );
 
     static $uncountable = array(
@@ -83,25 +83,25 @@ class Inflection
         'information',
         'equipment'
     );
-	
-	
-	private static $instance = false;
-	
-	public static function get_instance()
-	{
-		if(!self::$instance)
-		{
-			$class = __CLASS__;
-			self::$instance = new $class;
-		}
-		return self::$instance;
-	}
+    
+    
+    private static $instance = false;
+    
+    public static function get_instance()
+    {
+        if(!self::$instance)
+        {
+            $class = __CLASS__;
+            self::$instance = new $class;
+        }
+        return self::$instance;
+    }
 
     public static function pluralize( $string )
     {
-		global $irregularWords;
-		
-		// save some time in the case that singular and plural are the same
+        global $irregularWords;
+        
+        // save some time in the case that singular and plural are the same
         if ( in_array( strtolower( $string ), self::$uncountable ) )
             return $string;
 
@@ -134,13 +134,13 @@ class Inflection
     }
 
     public static function singularize( $string )
-    {	
-		global $irregularWords;
+    {    
+        global $irregularWords;
         // save some time in the case that singular and plural are the same
         if ( in_array( strtolower( $string ), self::$uncountable ) )
             return $string;
 
-	    // check for irregular words
+        // check for irregular words
         foreach ( $irregularWords as $result => $pattern )
         {
             $pattern = '/' . $pattern . '$/i';
@@ -148,8 +148,8 @@ class Inflection
             if ( preg_match( $pattern, $string ) )
                 return preg_replace( $pattern, $result, $string);
         }
-		
-		// check for irregular plural forms
+        
+        // check for irregular plural forms
         foreach ( self::$irregular as $result => $pattern )
         {
             $pattern = '/' . $pattern . '$/i';
@@ -158,7 +158,7 @@ class Inflection
                 return preg_replace( $pattern, $result, $string);
         }
 
-	    // check for matches using regular expressions
+        // check for matches using regular expressions
         foreach ( self::$singular as $pattern => $result )
         {
             if ( preg_match( $pattern, $string ) )

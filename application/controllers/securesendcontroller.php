@@ -17,7 +17,7 @@ class SecuresendController extends MFYU_VanillaController {
     public function index()
     {
         $password = '';
-		
+        
         $this->set('default_password', $password);
         
         $default_expire_time = 7;
@@ -83,19 +83,19 @@ class SecuresendController extends MFYU_VanillaController {
                     $today['day'] = date('d', $today['timestamp']);
                     $today['month'] = date('m', $today['timestamp']);
                     $today['year'] = date('Y', $today['timestamp']);
-					
+                    
                     switch($this->input->post['expire']['time'])
                     {
                         case 'days':
-						      $expiration_timestamp = mktime(
-							             $today['hour'],
-										 $today['minute'],
-										 $today['second'],
+                              $expiration_timestamp = mktime(
+                                         $today['hour'],
+                                         $today['minute'],
+                                         $today['second'],
                                          $today['month'],
-										 $today['day'] + $this->input->post['expire']['length'],
-										 $today['year']
-										 );
-						      break;
+                                         $today['day'] + $this->input->post['expire']['length'],
+                                         $today['year']
+                                         );
+                              break;
                         case 'weeks':
                               $expiration_timestamp = mktime(
                                          $today['hour'],
@@ -120,7 +120,7 @@ class SecuresendController extends MFYU_VanillaController {
                 }
                 
                 $expiration_date = ($this->input->post['expire']['time'] == 'views') ? $expiration_date : date('Y-m-d', $expiration_timestamp);;
-				
+                
                 $this->securesend->expiration_date = $expiration_date;
                 
                 $this->load_helper('string'); // load our string helper
@@ -140,13 +140,13 @@ class SecuresendController extends MFYU_VanillaController {
                     }
                 }
                 
-				//finally, encrypt our password to save in the database!
+                //finally, encrypt our password to save in the database!
                 $this->load_helper('encryption'); // load our encryption helper
                 
                 $password = $this->mfyu_encryption->encrypt($this->input->post['password']);
                 $this->securesend->pass = $password;
-				
-				
+                
+                
                 if($this->securesend->save()) // if it saves
                 {
                     $this->set('success', true); // success is true
@@ -175,27 +175,27 @@ class SecuresendController extends MFYU_VanillaController {
     
     public function v() // our view function, named v for short-ness of URLs
     {
-    	// set the template to be "view" instead of the default of "v" for the action
+        // set the template to be "view" instead of the default of "v" for the action
         $this->set_template('view');
-		
-		
-		// get our URL part
+        
+        
+        // get our URL part
         $url = $this->url->segment(3);
-		
+        
         if(!$url || trim($url) == '') // if no URL, redirect them back to securesend index page
         {
             $this->redirect('securesend/');
         }
         
-		// get our password by URL
+        // get our password by URL
         $this->securesend->get_by_url($url);
         
         if($this->securesend->exists()) // the item exists!
         {
-	        $this->load_helper('encryption'); // load our encryption helper
-	        // decrypt password from the DB
-	        $password = $this->mfyu_encryption->decrypt($this->securesend->pass);
-			
+            $this->load_helper('encryption'); // load our encryption helper
+            // decrypt password from the DB
+            $password = $this->mfyu_encryption->decrypt($this->securesend->pass);
+            
             // set our password for the view page
             $this->set('password', $password);
             
@@ -205,7 +205,7 @@ class SecuresendController extends MFYU_VanillaController {
                 $this->securesend->viewed(); // this password has been viewed! Do stuff with it! (if it reaches 0 it'll be deleted)
             }
             
-			// meta stuff
+            // meta stuff
             $this->meta['title'] = 'Your password!';
             $this->meta['description'] = '';
             $this->meta['keywords'] = '';
@@ -227,16 +227,16 @@ class SecuresendController extends MFYU_VanillaController {
         if($hash == CONFIG_HASH) // success, it matches
         {
             // crawl throuh DB and remove time-expired passwords!
-			// could use model to db interaction, but we'll just delete all records where expiry date is less than the current date
-			if($this->securesend->delete_expired()) // if we successfully deleted out of date entries
-			{
-				$status = "SUCCESSFUL DELETION";
-			}
-			else
-			{
-				$status = "FAILED DELETION";
-			}
-			
+            // could use model to db interaction, but we'll just delete all records where expiry date is less than the current date
+            if($this->securesend->delete_expired()) // if we successfully deleted out of date entries
+            {
+                $status = "SUCCESSFUL DELETION";
+            }
+            else
+            {
+                $status = "FAILED DELETION";
+            }
+            
             $rows = 0; // used to count number of rows we're deleting
             $subject = 'Cron has run';
             $message = <<<HTML
@@ -261,14 +261,14 @@ HTML;
             
         }
         
-		$headers = 'From: ' . SYSADMIN_EMAIL . PHP_EOL .
+        $headers = 'From: ' . SYSADMIN_EMAIL . PHP_EOL .
             'Reply-To: ' . SYSADMIN_EMAIL . PHP_EOL .
             'X-Mailer: PHP/' . phpversion();
-		
+        
         if(!DEVELOPMENT_ENVIRONMENT)
-		{
-			mail(SYSADMIN_EMAIL, $subject, $message, $headers);
-		}
+        {
+            mail(SYSADMIN_EMAIL, $subject, $message, $headers);
+        }
         
         $this->render = 0; // do not render
         return true;

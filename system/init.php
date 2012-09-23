@@ -1,19 +1,19 @@
 <?php
-require_once (ROOT . DS . 'system' . DS . 'shared.php');
+require_once (ROOT . DS . 'system' . DS . 'shared_functions.php');
 
 /** Get Required Files **/
 
-gzipOutput() || ob_start("ob_gzhandler");
+gzip_output() || ob_start("ob_gzhandler");
 
-setReporting(); // set error reporting levels here
+set_reporting(); // set error reporting levels here
 
 $cache = Cache::get_instance();
 $inflect = Inflection::get_instance();
 
 $extra_query_string = '';
 
-removeMagicQuotes();
-unregisterGlobals();
+remove_magic_quotes();
+unregister_globals();
 
 // let's go!
-callHook($url, $default, $autoload, $extra_query_string, $routing);
+run_this_show($url, $default, $autoload, $extra_query_string, $routing);

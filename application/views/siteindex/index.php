@@ -1,18 +1,18 @@
 <div id="maffyoo">
-	<div id="headlines">
-		<h3>Useful things:</h3>
-		<div class="col1">
-			<ul>
-				<li><a href="<?=SITE_URL;?>password/">Password: Generator</a></li>
-			</ul>
-		</div>
-		<div class="col2">
-			<ul>
-				<li><a href="<?=SITE_URL;?>securesend/">Password: Secure Send</a></li>
-			</ul>
-		</div>
+    <div id="headlines">
+        <h3>Useful things:</h3>
+        <div class="col1">
+            <ul>
+                <li><a href="<?=SITE_URL;?>password/">Password: Generator</a></li>
+            </ul>
+        </div>
+        <div class="col2">
+            <ul>
+                <li><a href="<?=SITE_URL;?>securesend/">Password: Secure Send</a></li>
+            </ul>
+        </div>
         <div class="footnotes">
-        	<p>&nbsp;</p>
+            <p>&nbsp;</p>
             <p>&nbsp;</p>
             <?php if($is_ssl): ?>
             <p>
@@ -26,5 +26,5 @@
                 Source code for these tools can be found on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a>
             </p>
         </div>
-	</div>
+    </div>
 </div>

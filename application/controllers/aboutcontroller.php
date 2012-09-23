@@ -3,10 +3,10 @@
 class AboutController extends MFYU_VanillaController {
     
     public function before_action ()
-	{
+    {
         $is_ssl = (GLOBAL_SSL) ? GLOBAL_SSL : false;
         $this->set_ssl($is_ssl);
-		$this->set('is_ssl', $is_ssl);
+        $this->set('is_ssl', $is_ssl);
     }
     
     public function index()
@@ -17,7 +17,7 @@ class AboutController extends MFYU_VanillaController {
     }
     
     public function after_action()
-	{
+    {
 
     }
 }

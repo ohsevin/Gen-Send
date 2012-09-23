@@ -3,10 +3,10 @@
 class PasswordController extends MFYU_VanillaController {
     
     public function before_action ()
-	{
+    {
         $is_ssl = (GLOBAL_SSL) ? GLOBAL_SSL : false;
         $this->set_ssl($is_ssl);
-		$this->set('is_ssl', $is_ssl);
+        $this->set('is_ssl', $is_ssl);
         $this->load_helper('input', 'input'); // load our input helper
     }
     
@@ -19,8 +19,8 @@ class PasswordController extends MFYU_VanillaController {
         $this->meta['keywords'] = '';
             
         if($this->input->post('submit')) {
-        	
-        	$this->load_helper('validation', 'validation'); // load our validation helper
+            
+            $this->load_helper('validation', 'validation'); // load our validation helper
             
             $rules = array(
                 'input|length'    =>    array(
@@ -31,7 +31,7 @@ class PasswordController extends MFYU_VanillaController {
                 )
             );
             
-			// setup our form
+            // setup our form
             $this->validation->setup($this->input->post, $rules);
             
             if($this->validation->validate()) // successful form submission
@@ -59,7 +59,7 @@ class PasswordController extends MFYU_VanillaController {
     }
     
     public function after_action()
-	{
+    {
 
     }
 }
