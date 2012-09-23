@@ -14,7 +14,7 @@
 		<h2>URL Generated:</h2>
 		<p>&nbsp;</p>
 		<p>
-			<?php echo site_url() . 'securesend/v/' . $url ;?>
+			<?php echo site_url() . 'v/' . $url ;?>
 		</p>
 		<p>
 			&nbsp;
