@@ -11,7 +11,7 @@ class SiteindexController extends MFYU_VanillaController {
 	
 	function index()
 	{
-		$this->meta['title'] = '';
+		$this->meta['title'] = SITE_NAME;
 		$this->meta['description'] = 'Gen&Send Password Creation and Pushing';
 		$this->meta['keywords'] = '';
 		/*
