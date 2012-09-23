@@ -21,11 +21,11 @@ For Hiawatha do the following:
 2. Make sure mfyu/tmp/* is writable by the webserver owner (e.g. www-data, apache, whatever -- this applies to any webserver, not just Hiawatha)
 3. Use the following Toolkit:
 
-UrlToolkit {
-   ToolkitID = mfyu
-   RequestURI exists Return
-   Match (.)\?(.) Rewrite $1&$2 Continue
-   Match ^/(.*) Rewrite /index.php?url=$1
+UrlToolkit {  
+   ToolkitID = mfyu  
+   RequestURI exists Return  
+   Match (.)\?(.) Rewrite $1&$2 Continue  
+   Match ^/(.*) Rewrite /index.php?url=$1  
 }
 
 The only DB driver I've tested this with is MySQL - others I'll look at adding eventually - it uses PDO for the database interaction.
