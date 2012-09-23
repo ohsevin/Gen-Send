@@ -85,7 +85,7 @@ function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routin
 {
     $query_string = array();
     $extra_query_string = array();
-        $original_url = array();
+    $original_url = array();
     
     if(isset($_GET) && count($_GET) > 0)
     {
@@ -95,14 +95,10 @@ function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routin
         }
     }
     
-    if (!isset($url))
+    if (!isset($url)) // homepage / default
     {
         $controller = $default['controller'];
         $action = $default['action'];
-        
-        $url_class_name = SYSTEM_PREPEND . 'Url';
-        $url_class = new $url_class_name(array(), $extra_query_string);
-        
     }
     else
     {
@@ -110,9 +106,6 @@ function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routin
         $url = route_url($url, $routing);
         $url_array = array();
         $url_array = explode("/",$url);
-        
-        $url_class_name = SYSTEM_PREPEND . 'Url';
-        $url_class = new $url_class_name($url_array, $original_url, $extra_query_string);
         
         $controller = $url_array[0]; // get our controller
         array_shift($url_array);
@@ -128,6 +121,10 @@ function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routin
         }
         $query_string = $url_array; // whatever's left
     }
+    
+    // our URL class for access URL segments etc
+    $url_class_name = SYSTEM_PREPEND . 'Url';
+    $url_class = new $url_class_name(array(), $original_url, $extra_query_string);
     
     // load our helpers
     foreach($autoload['helpers'] as $key => $helper)

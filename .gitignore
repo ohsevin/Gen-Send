@@ -1,4 +1,6 @@
-# Ignore everything in this directory
+# Ignore stuff and Titanium editor settings...
 .project
 .tmp*
 .DS_*
+.settings/*
+.DS_Store

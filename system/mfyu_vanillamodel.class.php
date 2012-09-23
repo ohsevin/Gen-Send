@@ -1,23 +1,22 @@
 <?php
 class MFYU_VanillaModel {
+    /**
+     * 
+     * 
+     */
     protected $_model;
     protected $_result;
     protected $_query;
     protected $_table;
-    protected $_object_fields_types;
     
     // used in constructing queries
     protected $_orderBy;
     protected $_order;
     protected $_extraConditions;
-    protected $_page;
-    protected $_limit;
-    
     protected $_describe = array();
     
     public $all; // will be used to store an array if we fetch multiple objects
     public $object_fields = array(); 
-    
     
     public $inflect;
     public $cache;
@@ -30,7 +29,6 @@ class MFYU_VanillaModel {
         
         $this->_model = get_class($this);
         
-        $this->_limit = PAGINATE_LIMIT;
         $this->_table = strtolower($this->inflect->pluralize($this->_model));
         
         if(!$this->abstract) // if it's an 'abstract' class, there'll be no database to describe
@@ -248,25 +246,6 @@ class MFYU_VanillaModel {
         return $param;
     }
     
-    // thought it'd be needed to map datatypes to correct values on PDO::bindParam();
-    // it seems PDO just works without having to specify types. Neat-o
-    protected function _get_data_type($field)
-    {
-        /*
-        if(!$this->_object_fields_types || count($this->_object_fields_types) > 0 || empty($this->_object_fields_types))
-        {
-            return false;
-        }
-        
-        switch($this->_object_fields_types[$field])
-        {
-            case '':
-                break;
-        }
-        */
-        return true;
-    }
-    
     protected function _describe()
     {
         $this->cache = Cache::get_instance();
@@ -282,9 +261,6 @@ class MFYU_VanillaModel {
             foreach($this->_result as $result)
             {
                 array_push($this->_describe,$result['Field']);
-                
-                // separate array of fields & types too (needed for PDO::bindParam() ?) - probably not, here just in case though
-                $this->_object_fields_types[$result['Field']] = $result['Type'];
             }
             
             $this->cache->set('describe'.$this->_table,$this->_describe);
