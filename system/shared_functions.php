@@ -2,7 +2,7 @@
 
 /** Check if environment is development and display errors **/
 
-function set_reporting()
+function set_error_reporting()
 {
     if (DEVELOPMENT_ENVIRONMENT == true)
     {
@@ -36,7 +36,8 @@ function remove_magic_quotes()
     }
 }
 
-// remove globals
+/** Check register globals and remove them **/
+
 function unregister_globals()
 {
     if (ini_get('register_globals'))
@@ -57,7 +58,7 @@ function unregister_globals()
 
 /** Secondary Call Function **/
 
-function performAction($controller,$action,$queryString = null,$render = 0)
+function perform_action($controller,$action,$queryString = null,$render = 0)
 {
     $controllerName = ucfirst($controller).'Controller';
     $dispatch = new $controllerName($controller,$action);
@@ -81,7 +82,7 @@ function route_url($url, $routing)
 
 /** Main Call Function **/
 
-function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routing)
+function run_calls(&$url, $default, $autoload, &$extra_query_string, $routing)
 {
     $query_string = array();
     $extra_query_string = array();
@@ -99,6 +100,10 @@ function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routin
     {
         $controller = $default['controller'];
         $action = $default['action'];
+        
+        $url_class_name = SYSTEM_PREPEND . 'Url';
+        $url_class = new $url_class_name(array(), $original_url, $extra_query_string);
+        
     }
     else
     {
@@ -107,24 +112,23 @@ function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routin
         $url_array = array();
         $url_array = explode("/",$url);
         
-        $controller = $url_array[0]; // get our controller
-        array_shift($url_array);
+        $url_class_name = SYSTEM_PREPEND . 'Url';
+        $url_class = new $url_class_name($url_array, $original_url, $extra_query_string);
         
+        $controller = $url_array[0];
+        
+        array_shift($url_array);
         if (isset($url_array[0]) && trim($url_array[0]) != '')
         {
-            $action = $url_array[0]; // get our action
+            $action = $url_array[0];
             array_shift($url_array);
         }
         else
         {
             $action = 'index'; // Default Action
         }
-        $query_string = $url_array; // whatever's left
+        $query_string = $url_array; // whatever's left in here
     }
-    
-    // our URL class for access URL segments etc
-    $url_class_name = SYSTEM_PREPEND . 'Url';
-    $url_class = new $url_class_name(array(), $original_url, $extra_query_string);
     
     // load our helpers
     foreach($autoload['helpers'] as $key => $helper)
@@ -133,7 +137,6 @@ function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routin
     }
     
     $controller_name = ucfirst($controller).'Controller';
-    $abstract_controller = false;
     
     // if class or method in that class doesn't exist - 404!
     if(!class_exists($controller_name) || !(int)method_exists($controller_name, $action))
@@ -147,11 +150,11 @@ function run_this_show(&$url, $default, $autoload, &$extra_query_string, $routin
     
     if ((int)method_exists($controller_name, $action))
     {
-        call_user_func_array(array($dispatch,"before_action"),$query_string);
-        call_user_func_array(array($dispatch,$action),$query_string);
-        call_user_func_array(array($dispatch,"after_action"),$query_string);
+        call_user_func_array(array($dispatch, "before_action"), $query_string);
+        call_user_func_array(array($dispatch, $action), $query_string);
+        call_user_func_array(array($dispatch, "after_action"), $query_string);
     }
-    else // not sure this is needed with the above check running - would only fall into here if 404 controller didn't have the method?
+    else
     {
         // error
         exit("ohnoes");
@@ -206,13 +209,16 @@ function gzip_output()
 {
     $ua = $_SERVER['HTTP_USER_AGENT'];
 
-    if (0 !== strpos($ua, 'Mozilla/4.0 (compatible; MSIE ') || false !== strpos($ua, 'Opera'))
-    {
+    if (0 !== strpos($ua, 'Mozilla/4.0 (compatible; MSIE ')
+        || false !== strpos($ua, 'Opera')) {
         return false;
     }
 
     $version = (float)substr($ua, 30); 
-    return ($version < 6 || ($version == 6  && false === strpos($ua, 'SV1')));
+    return (
+        $version < 6
+        || ($version == 6  && false === strpos($ua, 'SV1'))
+    );
 }
 
 function redirect($url)
@@ -223,18 +229,16 @@ function redirect($url)
 
 function site_url()
 {
-    if($_SERVER['SERVER_PORT'] != SERVER_SSL_PORT)
-    {
+    if($_SERVER['SERVER_PORT'] != SERVER_SSL_PORT) {
         $url = SITE_URL;
     }
-    else
-    {
+    else {
         $url = SECURE_SITE_URL;
     }
     return $url;
 }
 
-// yeah, I use it...
+// yeah, I use it, so sue me...
 function print_array($array, $return = false)
 {
     print "<pre>";
