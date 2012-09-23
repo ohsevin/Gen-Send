@@ -11,8 +11,8 @@ class SiteindexController extends MFYU_VanillaController {
 	
 	function index()
 	{
-		$this->meta['title'] = 'Home';
-		$this->meta['description'] = 'Tools created by Matthew Brunt of maffyoo.co.uk - choose from the list below';
+		$this->meta['title'] = '';
+		$this->meta['description'] = 'Gen&Send Password Creation and Pushing';
 		$this->meta['keywords'] = '';
 		/*
 		$query = 'SELECT * FROM todo';
