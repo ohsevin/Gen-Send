@@ -29,7 +29,8 @@ define('SITE_ENCRYPTION_KEY', ''); // put long (32char) random keys in here for 
 
 define('SERVER_SSL_PORT', 443); // change if different on your server
 
-define('PAGINATE_LIMIT', '5');
+define('DEFAULT_EXPIRE_DAYS', 7);
+define('DEFAULT_EXPIRE_VIEWS', 3);
 
 /* prepends and schtuff */
 define('SYSTEM_PREPEND', 'GNSND_'); // generally don't change this as default classnames have this appended to the start

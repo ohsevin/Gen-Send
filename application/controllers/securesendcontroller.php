@@ -20,10 +20,8 @@ class SecuresendController extends GNSND_VanillaController {
         
         $this->set('default_password', $password);
         
-        $default_expire_days = 30;
-        $default_expire_views = 10;
-        $this->set('default_expire_days', $default_expire_days);
-        $this->set('default_expire_views', $default_expire_views);
+        $this->set('default_expire_days', DEFAULT_EXPIRE_DAYS);
+        $this->set('default_expire_views', DEFAULT_EXPIRE_VIEWS);
         
         $this->meta['title'] = 'Send your password securely';
         $this->meta['description'] = 'Use this tool to send your password securely to another person.';
