@@ -2,7 +2,7 @@
 /**
 * Validation helper class.
 *
-* @package    MFYU_Framework
+* @package    GNSND_Framework
 * @author     Matt Brunt (http://maffyoo.co.uk)
 * @version    0.3.3
 * ...
@@ -53,7 +53,7 @@
  * 
  */
 
-class MFYU_Validation {
+class GNSND_Validation {
     
     /**
      * @var array    stores the data passed into the validation class (typically $_POST)  

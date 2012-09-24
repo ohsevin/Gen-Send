@@ -1,6 +1,6 @@
 <?php
 
-class SecuresendController extends MFYU_VanillaController {
+class SecuresendController extends GNSND_VanillaController {
     
     public function before_action()
     {
@@ -20,19 +20,17 @@ class SecuresendController extends MFYU_VanillaController {
         
         $this->set('default_password', $password);
         
-        $default_expire_time = 7;
-        $this->set('default_expire_time', $default_expire_time);
-        
-        if(isset($this->input->post['password_transfer'])) // if we've transferred the password from our other form
-        {
-            $this->input->post['expire']['length'] = $default_expire_time;
-        }
+        $default_expire_days = 30;
+        $default_expire_views = 10;
+        $this->set('default_expire_days', $default_expire_days);
+        $this->set('default_expire_views', $default_expire_views);
         
         $this->meta['title'] = 'Send your password securely';
         $this->meta['description'] = 'Use this tool to send your password securely to another person.';
         $this->meta['keywords'] = '';
-            
-        if($this->input->post('submit')) {
+        
+        if($this->input->post('submit') && !$this->input->post('password_transfer')) // if posted and it's not a transfer from password gen tool
+        {
             
             $rules = array(
                 'password'              =>    array(
@@ -40,22 +38,25 @@ class SecuresendController extends MFYU_VanillaController {
                     'max_length'            => 255
                 ),
                 
-                'expire|length'         =>    array(
-                    'required'              =>    true,
-                    'filters'               =>    'int',
-                    'min_value'             =>    1,
+                'expire|views'       =>    array(
+                    'required'                  =>    true,
+                    'filters'                   =>    'int',
+                    'min_value'                 =>    1,
+                    'max_value'                 =>    90,
                     
-                    'error_messages'        =>    array(
-                           'required'           =>    '\'Expire after\' is required'
+                    'error_messages'            =>    array(
+                           'required'               =>    '\'Expire after views\' is required'
                     )
                 ),
                 
-                'expire|time'           =>    array(
-                    'required'              =>    true,
-                    'filters'               =>    'chars',
+                'expire|days'       =>    array(
+                    'required'                  =>    true,
+                    'filters'                   =>    'int',
+                    'min_value'                 =>    1,
+                    'max_value'                 =>    90,
                     
-                    'error_messages'        =>    array(
-                           'required'           =>    'Please choose what type of expiration you want.',
+                    'error_messages'            =>    array(
+                           'required'               =>    '\'Expire after days\' is required'
                     )
                 )
             );
@@ -64,63 +65,24 @@ class SecuresendController extends MFYU_VanillaController {
             
             if($this->validation->validate()) // successful form submission
             {
-                // setup defaults before we change them based on what type of expiration it is
-                $expiration_date = '0000-00-00';
-                $this->securesend->expiration_views = 0; 
+                $this->securesend->expiration_views = (int)$this->input->post['expire']['views']; // set our view expiration
                 
-                if($this->input->post['expire']['time'] == 'views') // if it's after $length views
-                {
-                    $this->securesend->expiration_views = $this->input->post['expire']['length']; 
-                }
-                else // it's date-based expiration
-                {
-                    $today['timestamp'] = time(); // current timestamp
-                    
-                    $today['hour'] = date('H', $today['timestamp']);
-                    $today['minute'] = date('i', $today['timestamp']);
-                    $today['second'] = date('s', $today['timestamp']);
-                    
-                    $today['day'] = date('d', $today['timestamp']);
-                    $today['month'] = date('m', $today['timestamp']);
-                    $today['year'] = date('Y', $today['timestamp']);
-                    
-                    switch($this->input->post['expire']['time'])
-                    {
-                        case 'days':
-                              $expiration_timestamp = mktime(
-                                         $today['hour'],
-                                         $today['minute'],
-                                         $today['second'],
-                                         $today['month'],
-                                         $today['day'] + $this->input->post['expire']['length'],
-                                         $today['year']
-                                         );
-                              break;
-                        case 'weeks':
-                              $expiration_timestamp = mktime(
-                                         $today['hour'],
-                                         $today['minute'],
-                                         $today['second'],
-                                         $today['month'],
-                                         $today['day'] + ($this->input->post['expire']['length'] * 7),
-                                         $today['year']
-                                         );
-                              break;
-                        case 'months':
-                              $expiration_timestamp = mktime(
-                                         $today['hour'],
-                                         $today['minute'],
-                                         $today['second'],
-                                         $today['month'] + $this->input->post['expire']['length'],
-                                         $today['day'],
-                                         $today['year']
-                                         );
-                              break;
-                    }
-                }
+                $today['timestamp'] = time(); // current timestamp
                 
-                $expiration_date = ($this->input->post['expire']['time'] == 'views') ? $expiration_date : date('Y-m-d', $expiration_timestamp);;
+                $today['hour'] = date('H', $today['timestamp']);
+                $today['minute'] = date('i', $today['timestamp']);
+                $today['second'] = date('s', $today['timestamp']);
                 
+                $today['day'] = date('d', $today['timestamp']);
+                $today['month'] = date('m', $today['timestamp']);
+                $today['year'] = date('Y', $today['timestamp']);
+                
+                $expiration_timestamp = mktime($today['hour'], $today['minute'], $today['second'],
+                                             $today['month'],  $today['day'] + (int)$this->input->post['expire']['days'], $today['year']);
+                
+                $expiration_date = date('Y-m-d', $expiration_timestamp);
+                
+                // set our expiration date
                 $this->securesend->expiration_date = $expiration_date;
                 
                 $this->load_helper('string'); // load our string helper
@@ -132,7 +94,7 @@ class SecuresendController extends MFYU_VanillaController {
                 {
                     // to generate the URL we'll basically use my string helper class to create a new URL, and check it doesn't exist...
                     // it's not tied to a DB row ID then, so it's not generated from that number, meaning harder to crack.
-                    $this->securesend->url = $this->mfyu_string->generate_random_string(); // 8 chars default length, should be fine.
+                    $this->securesend->url = $this->gnsnd_string->generate_random_string(); // 8 chars default length, should be fine.
                     
                     if(!$this->securesend->url_exists()) // if the url doesn't already exist in the DB
                     {
@@ -143,7 +105,7 @@ class SecuresendController extends MFYU_VanillaController {
                 //finally, encrypt our password to save in the database!
                 $this->load_helper('encryption'); // load our encryption helper
                 
-                $password = $this->mfyu_encryption->encrypt($this->input->post['password']);
+                $password = $this->gnsnd_encryption->encrypt($this->input->post['password']);
                 $this->securesend->pass = $password;
                 
                 
@@ -171,6 +133,10 @@ class SecuresendController extends MFYU_VanillaController {
                 $this->set('post', $this->input->post);
             }
         }
+        elseif($this->input->post('password_transfer')) // otherwise if it's a transfer!
+        {
+            $this->set('post', $this->input->post);
+        }
     }
     
     public function v() // our view function, named v for short-ness of URLs
@@ -194,16 +160,20 @@ class SecuresendController extends MFYU_VanillaController {
         {
             $this->load_helper('encryption'); // load our encryption helper
             // decrypt password from the DB
-            $password = $this->mfyu_encryption->decrypt($this->securesend->pass);
+            $password = $this->gnsnd_encryption->decrypt($this->securesend->pass);
             
-            // set our password for the view page
+            // get remaining views and date stuff
+            $remaining_views = $this->securesend->expiration_views - 1; // set viewcount here as if we do it afterwards, it'll be deleted by the securesend->viewed() function
+            $expiry_formatted = $this->securesend->expiration_date;
+            
+            $expiry_formatted = date('jS F Y', strtotime($expiry_formatted));
+            
+            // set our info for the view page
             $this->set('password', $password);
+            $this->set('expiry_formatted', $expiry_formatted);
+            $this->set('remaining_views', $remaining_views);
             
-            // update stuff here if it's a view-count-based-password-thingy
-            if($this->securesend->expiration_date == '0000-00-00' && $this->securesend->expiration_views > 0) // if it's blank expiration date and has views then it's a view-based password
-            {
-                $this->securesend->viewed(); // this password has been viewed! Do stuff with it! (if it reaches 0 it'll be deleted)
-            }
+            $this->securesend->viewed(); // this password has been viewed! Do stuff with it! (if it reaches 0 it'll be deleted)
             
             // meta stuff
             $this->meta['title'] = 'Your password!';

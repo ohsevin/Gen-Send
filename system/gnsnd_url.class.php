@@ -1,6 +1,6 @@
 <?php
 
-class MFYU_Url {
+class GNSND_Url {
     
     protected $_url_parts;
     protected $_o_url_parts; // original URL before it was routed

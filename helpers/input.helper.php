@@ -8,7 +8,7 @@
 * ...
 */
 
-class MFYU_Input {
+class GNSND_Input {
     
     public $post;
     public $get;

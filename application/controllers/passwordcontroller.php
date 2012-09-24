@@ -1,6 +1,6 @@
 <?php
 
-class PasswordController extends MFYU_VanillaController {
+class PasswordController extends GNSND_VanillaController {
     
     public function before_action ()
     {
@@ -39,8 +39,8 @@ class PasswordController extends MFYU_VanillaController {
                 $this->set('success', true);
                 $this->load_helper('string'); // load our string helper
                 
-                $password = $this->mfyu_string->generate_random_string($this->input->post['input']['length'], $this->input->post('options'));
-                $phonetic = $this->mfyu_string->to_phonetic($password);
+                $password = $this->gnsnd_string->generate_random_string($this->input->post['input']['length'], $this->input->post('options'));
+                $phonetic = $this->gnsnd_string->to_phonetic($password);
                 
                 $this->meta['title'] = 'Your password has been generated!';
                 $this->meta['description'] = '';

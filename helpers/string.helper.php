@@ -8,7 +8,7 @@
 * @version    0.3.3
 */
 
-class MFYU_String {
+class GNSND_String {
         
     public static $characters = array(
                 'full_lowercase'            =>        'abcdefghijklmnopqrstuvwxyz',

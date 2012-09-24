@@ -1,6 +1,6 @@
 <?php if (!defined('BASE_PATH')) exit('No direct script access allowed');
 
-class Securesend extends MFYU_VanillaModel {
+class Securesend extends GNSND_VanillaModel {
         
     protected $_abstract = false;
     
@@ -55,8 +55,8 @@ class Securesend extends MFYU_VanillaModel {
         
         $this->load_helper('string');
         
-        $random_hash = $this->mfyu_string->generate_random_string(32);
-        $random_url_hash = $this->mfyu_string->generate_random_string(8);
+        $random_hash = $this->gnsnd_string->generate_random_string(32);
+        $random_url_hash = $this->gnsnd_string->generate_random_string(8);
         
         $hash_run_query = $this->db->prepare($hash_query);
         
@@ -103,8 +103,8 @@ class Securesend extends MFYU_VanillaModel {
         
         $this->load_helper('string');
         
-        $random_hash = $this->mfyu_string->generate_random_string(32);
-        $random_url_hash = $this->mfyu_string->generate_random_string(8);
+        $random_hash = $this->gnsnd_string->generate_random_string(32);
+        $random_url_hash = $this->gnsnd_string->generate_random_string(8);
         
         $hash_run_query = $this->db->prepare($hash_query);
         

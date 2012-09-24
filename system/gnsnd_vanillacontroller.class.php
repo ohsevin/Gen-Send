@@ -1,6 +1,6 @@
 <?php
 
-class MFYU_VanillaController {
+class GNSND_VanillaController {
     
     protected $_controller;
     protected $_action;

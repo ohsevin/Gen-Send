@@ -145,6 +145,9 @@ form label { float: left; width: 70%; text-align: left; height: 30px; }
 form .securesend-password input { width: 386px; }
 form input[type="radio"] { float: right; margin-top: 10px; }
 
+form#secure_send label { float: left; margin-right: 0; margin-top: 22px; }
+form#secure_send #expire_views { float: left; margin-right: 10px; margin-top: 15px; }
+form#secure_send #expire_days { float: left; margin-right: 10px; margin-top: 15px; }
 
 div.footnotes { margin-top: 30px; font-size: 75%; }
 

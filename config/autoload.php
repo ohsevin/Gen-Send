@@ -7,7 +7,7 @@ $autoload['helpers'] = array(
      * 
      * $key is the value assigned to the variable accessed via $this, if not set, it's set to strtolower($helpername);
      * 
-     * so it'll be $this->mfyu_string for example
+     * so it'll be $this->gnsnd_string for example
      * 
      */
     

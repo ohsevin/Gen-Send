@@ -10,17 +10,17 @@
         <?php endif; ?>
             
         <?php if(isset($password) && trim($password) != ''): ?>
-        <h2><?=htmlentities($password);?></h2>
-        <h2 class="sub"><?=$phonetic;?></h2>
+        <h2><?php echo htmlentities($password); ?></h2>
+        <h2 class="sub"><?php echo $phonetic; ?></h2>
         
-        <form action="<?=site_url();?>securesend/" method="post">
-            <input type="hidden" value="<?=htmlentities($password);?>" name="password" />
+        <form action="<?=site_url();?>send/" method="post">
+            <input type="hidden" value="<?php echo $password; ?>" name="password" />
             <input type="hidden" value="1" name="password_transfer" />
             <input type="submit" value="Transfer to secure send tool..." name="submit" />
         </form>
         
         <?php endif; ?>
-        <form action="<?=site_url();?>password/" method="post">
+        <form action="<?=site_url();?>gen/" method="post">
         <div class="col1">
             <ul>
                 <li><label for="length">Length:</label> <input type="text" maxlength="2" name="input[length]" id="length" value="<?php echo isset($post['input']['length']) ? $post['input']['length'] : $default_password_length ; ?>" /></li>

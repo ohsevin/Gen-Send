@@ -20,7 +20,7 @@
             &nbsp;
         </p>
         <?php else: ?>
-        <form action="<?=site_url();?>securesend/" method="post">
+        <form action="<?=site_url();?>send/" method="post" id="secure_send">
             
         <div class="securesend-password">
             <input type="text" autocomplete="off" name="password" id="password" value="<?php echo isset($post['password']) ? $post['password'] : $default_password ; ?>" placeholder="Paste your password here:" />
@@ -28,50 +28,13 @@
             
         <div class="col1">
             <ul>
-                <li><label for="expire">Expire after:</label> <input type="text" autocomplete="off" maxlength="2" name="expire[length]" id="expire" value="<?php echo isset($post['expire']['length']) ? $post['expire']['length'] : $default_expire_time ; ?>" /></li>
+                <li>Expire after: </li>
+                <li><input type="text" autocomplete="off" maxlength="2" name="expire[days]" id="expire_days" value="<?php echo isset($post['days']['length']) ? $post['days']['length'] : $default_expire_days ; ?>" /><label for="expire_days">days</label></li>
                 <li>
-                    <label for="expire_days">Days:</label>
-                    <input id="expire_days" type="radio" name="expire[time]" value="days"
-                    <?php if(isset($post['submit'])): ?>
-                        <?php if(isset($post['expire']['time']) && $post['expire']['time'] == 'days'): ?>
-                            checked="checked"
-                        <?php endif; ?>
-                    <?php endif; ?>
-                    />
+                    OR
                 </li>
-                
-                <li>
-                    <label for="expire_weeks">Weeks:</label>
-                    <input id="expire_weeks" type="radio" name="expire[time]" value="weeks"
-                    <?php if(isset($post['submit'])): ?>
-                        <?php if(isset($post['expire']['time']) && $post['expire']['time'] == 'weeks'): ?>
-                            checked="checked"
-                        <?php endif; ?>
-                    <?php endif; ?>
-                    />
-                </li>
-                
-                <li>
-                    <label for="expire_months">Months:</label>
-                    <input id="expire_months" type="radio" name="expire[time]" value="months"
-                    <?php if(isset($post['submit'])): ?>
-                        <?php if(isset($post['expire']['time']) && $post['expire']['time'] == 'months'): ?>
-                            checked="checked"
-                        <?php endif; ?>
-                    <?php endif; ?>
-                    />
-                </li>
-                
-                <li>
-                    <label for="expire_weeks">Views:</label>
-                    <input id="expire_weeks" type="radio" name="expire[time]" value="views"
-                    <?php if(isset($post['submit'])): ?>
-                        <?php if(isset($post['expire']['time']) && $post['expire']['time'] == 'views'): ?>
-                            checked="checked"
-                        <?php endif; ?>
-                    <?php endif; ?>
-                    />
-                </li>
+                <li><input type="text" autocomplete="off" maxlength="2" name="expire[views]" id="expire_views" value="<?php echo isset($post['views']['length']) ? $post['views']['length'] : $default_expire_views ; ?>" /><label for="expire_views">views</label></li>
+                <li>Whatever one comes first.</li>
             </ul>
         </div>
         <div class="col2">

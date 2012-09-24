@@ -1,6 +1,6 @@
 <?php
 
-class AboutController extends MFYU_VanillaController {
+class AboutController extends GNSND_VanillaController {
     
     public function before_action ()
     {

@@ -10,7 +10,7 @@
 * ...
 */
 
-class MFYU_Encryption {
+class GNSND_Encryption {
     
     CONST ENCRYPT_CIPHER        = MCRYPT_RIJNDAEL_256;
     CONST ENCRYPT_MODE          = MCRYPT_MODE_ECB;

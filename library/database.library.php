@@ -1,5 +1,5 @@
 <?php
-class MFYU_Database extends PDO {
+class GNSND_Database extends PDO {
     protected $_dbHandle;
     protected $_result;
     protected $_query;

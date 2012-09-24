@@ -3,12 +3,12 @@
         <h3>Useful things:</h3>
         <div class="col1">
             <ul>
-                <li><a href="<?php echo site_url();?>password/">Password: Generator</a></li>
+                <li><a href="<?php echo site_url();?>gen/">Password: Generator</a></li>
             </ul>
         </div>
         <div class="col2">
             <ul>
-                <li><a href="<?php echo site_url();?>securesend/">Password: Secure Send</a></li>
+                <li><a href="<?php echo site_url();?>send/">Password: Secure Send</a></li>
             </ul>
         </div>
         <div class="footnotes">

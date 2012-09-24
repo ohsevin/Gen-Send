@@ -1,5 +1,5 @@
 <?php
-class MFYU_VanillaModel {
+class GNSND_VanillaModel {
     /**
      * 
      * 
@@ -23,7 +23,7 @@ class MFYU_VanillaModel {
     
     function __construct() {
         
-        $this->db = new MFYU_Database();
+        $this->db = new GNSND_Database();
         $this->inflect = Inflection::get_instance();
         $this->cache = Cache::get_instance();
         

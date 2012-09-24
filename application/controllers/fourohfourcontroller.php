@@ -1,6 +1,6 @@
 <?php
 
-class FourohfourController extends MFYU_VanillaController {
+class FourohfourController extends GNSND_VanillaController {
     
     function before_action ()
     {

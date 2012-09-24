@@ -17,12 +17,12 @@ This does use Apache specific re-writes in the .htaccess files as standard.
 
 For Hiawatha do the following:
 
-1. Set the /public/ dir as the website root, e.g. /path/to/mfyu/public
-2. Make sure mfyu/tmp/* is writable by the webserver owner (e.g. www-data, apache, whatever -- this applies to any webserver, not just Hiawatha)
+1. Set the /public/ dir as the website root, e.g. /path/to/gensend/public
+2. Make sure gensend/tmp/* is writable by the webserver owner (e.g. www-data, apache, whatever -- this applies to any webserver, not just Hiawatha)
 3. Use the following Toolkit:
 
 UrlToolkit {  
-   ToolkitID = mfyu  
+   ToolkitID = gensend  
    RequestURI exists Return  
    Match (.)\?(.) Rewrite $1&$2 Continue  
    Match ^/(.*) Rewrite /index.php?url=$1  

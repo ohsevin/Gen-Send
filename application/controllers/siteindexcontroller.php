@@ -1,6 +1,6 @@
 <?php
 
-class SiteindexController extends MFYU_VanillaController {
+class SiteindexController extends GNSND_VanillaController {
     
     function before_action ()
     {
