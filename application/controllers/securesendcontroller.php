@@ -119,7 +119,7 @@ class SecuresendController extends MFYU_VanillaController {
                     }
                 }
                 
-                $expiration_date = ($this->input->post['expire']['time'] == 'views') ? $expiration_date : date('Y-m-d', $expiration_timestamp);;
+                $expiration_date = ($this->input->post['expire']['time'] == 'views') ? $expiration_date : date('Y-m-d', $expiration_timestamp);
                 
                 $this->securesend->expiration_date = $expiration_date;
                 
