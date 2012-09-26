@@ -126,7 +126,7 @@ class GNSND_VanillaController {
         
     }
     
-    function load_library($library, $key = 0)
+    function load_library($library, $key = false)
     {
         load_library($library); // global function to include the right file
         
@@ -134,7 +134,7 @@ class GNSND_VanillaController {
         
         $var_name = $key;
         
-        if(is_int($key))
+        if(!$key)
         {
             $var_name = strtolower($library_name);
         }

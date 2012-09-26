@@ -7,7 +7,7 @@
 
 class Inflection
 {
-    static $plural = array(
+    public static $plural = array(
         '/(quiz)$/i'               => "$1zes",
         '/^(ox)$/i'                => "$1en",
         '/([m|l])ouse$/i'          => "$1ice",
@@ -29,7 +29,7 @@ class Inflection
         '/$/'                      => "s"
     );
 
-    static $singular = array(
+    public static $singular = array(
         '/(quiz)zes$/i'             => "$1",
         '/(matr)ices$/i'            => "$1ix",
         '/(vert|ind)ices$/i'        => "$1ex",
@@ -60,7 +60,7 @@ class Inflection
         '/s$/i'                     => ""
     );
 
-    static $irregular = array(
+    public static $irregular = array(
         'move'      => 'moves',
         'foot'      => 'feet',
         'goose'     => 'geese',
@@ -72,7 +72,7 @@ class Inflection
         'admin'     => 'admin'
     );
 
-    static $uncountable = array(
+    public static $uncountable = array(
         'sheep',
         'fish',
         'deer',
@@ -85,84 +85,84 @@ class Inflection
     );
     
     
-    private static $instance = false;
+    private static $_instance = false;
     
     public static function get_instance()
     {
-        if(!self::$instance)
+        if(!self::$_instance)
         {
             $class = __CLASS__;
-            self::$instance = new $class;
+            self::$_instance = new $class;
         }
-        return self::$instance;
+        return self::$_instance;
     }
 
-    public static function pluralize( $string )
+    public static function pluralize($string)
     {
         global $irregularWords;
         
         // save some time in the case that singular and plural are the same
-        if ( in_array( strtolower( $string ), self::$uncountable ) )
+        if(in_array(strtolower($string), self::$uncountable))
             return $string;
 
         // check for irregular singular forms
-        foreach ( $irregularWords as $pattern => $result )
+        foreach($irregularWords as $pattern => $result)
         {
             $pattern = '/' . $pattern . '$/i';
 
-            if ( preg_match( $pattern, $string ) )
-                return preg_replace( $pattern, $result, $string);
+            if(preg_match( $pattern, $string))
+                return preg_replace($pattern, $result, $string);
         }
 
         // check for irregular singular forms
-        foreach ( self::$irregular as $pattern => $result )
+        foreach (self::$irregular as $pattern => $result)
         {
             $pattern = '/' . $pattern . '$/i';
 
-            if ( preg_match( $pattern, $string ) )
+            if(preg_match( $pattern, $string))
                 return preg_replace( $pattern, $result, $string);
         }
 
         // check for matches using regular expressions
-        foreach ( self::$plural as $pattern => $result )
+        foreach(self::$plural as $pattern => $result)
         {
-            if ( preg_match( $pattern, $string ) )
-                return preg_replace( $pattern, $result, $string );
+            if(preg_match($pattern, $string))
+                return preg_replace($pattern, $result, $string);
         }
 
         return $string;
     }
 
-    public static function singularize( $string )
+    public static function singularize($string)
     {    
         global $irregularWords;
         // save some time in the case that singular and plural are the same
-        if ( in_array( strtolower( $string ), self::$uncountable ) )
+        if(in_array(strtolower($string), self::$uncountable))
             return $string;
 
         // check for irregular words
-        foreach ( $irregularWords as $result => $pattern )
+        foreach($irregularWords as $result => $pattern)
         {
             $pattern = '/' . $pattern . '$/i';
 
-            if ( preg_match( $pattern, $string ) )
-                return preg_replace( $pattern, $result, $string);
+            if(preg_match($pattern, $string))
+                return preg_replace($pattern, $result, $string);
         }
         
         // check for irregular plural forms
-        foreach ( self::$irregular as $result => $pattern )
+        foreach(self::$irregular as $result => $pattern)
         {
             $pattern = '/' . $pattern . '$/i';
 
-            if ( preg_match( $pattern, $string ) )
-                return preg_replace( $pattern, $result, $string);
+            if(preg_match($pattern, $string))
+                return preg_replace($pattern, $result, $string);
         }
 
         // check for matches using regular expressions
-        foreach ( self::$singular as $pattern => $result )
+        foreach(self::$singular as $pattern => $result)
         {
-            if ( preg_match( $pattern, $string ) )
-                return preg_replace( $pattern, $result, $string );
+            if(preg_match($pattern, $string))
+                return preg_replace($pattern, $result, $string);
         }
 
         return $string;

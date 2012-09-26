@@ -130,6 +130,7 @@ class GNSND_VanillaModel {
             $run_query = $this->db->prepare($query);
             $run_query->bindParam(':id', $id, PDO::PARAM_INT);
             $run_query->execute();
+            
             $result = $run_query->fetch(PDO::FETCH_ASSOC); // get our next row
             
             if($result) // if we have a result
@@ -145,16 +146,6 @@ class GNSND_VanillaModel {
                 return false; // return false, bad times.
             }
         }
-    }
-    
-    public function get() // get all rows or a specific limited number
-    {
-        
-    }
-    
-    public function order_by()
-    {
-        
     }
     
     // deletes the current item
@@ -185,17 +176,18 @@ class GNSND_VanillaModel {
         }
     }
     
-    // clear our data yo'
+    // clear our data
     public function clear()
     {
         // run through, set all fields to null
-        foreach ($this->_describe as $field) {
+        foreach ($this->_describe as $field)
+        {
             $this->$field = null;
             $this->object_fields[$field] = null; // separate array of fields too
         }
     }
     
-    // function to eventually load an item by any field considered to be unique...
+    // function to eventually load an item by any field considered to be unique... (such as a URL maybe?)
     public function load_by_field($field = '', $value = false)
     {
         
@@ -249,12 +241,13 @@ class GNSND_VanillaModel {
     protected function _describe()
     {
         $this->cache = Cache::get_instance();
+        
+        $this->_describe = $this->cache->get('describe' . $this->_table); // load from cache
 
-        //$this->_describe = $this->cache->get('describe'.$this->_table);
-
-        if (!$this->_describe) {
+        if (!$this->_describe) // if it doesn't exist - let's get it!
+        {
             $this->_describe = array();
-            $query = $this->db->prepare('DESCRIBE '.$this->_table);
+            $query = $this->db->prepare('DESCRIBE ' . $this->_table);
             $query->execute();
             $this->_result = $query->fetchAll(PDO::FETCH_ASSOC);
             
@@ -263,15 +256,17 @@ class GNSND_VanillaModel {
                 array_push($this->_describe,$result['Field']);
             }
             
-            $this->cache->set('describe'.$this->_table,$this->_describe);
+            $this->cache->set('describe' . $this->_table,$this->_describe);
         }
-        foreach ($this->_describe as $field) {
+        foreach ($this->_describe as $field)
+        {
             $this->$field = null;
             $this->object_fields[$field] = null; // separate array of fields too
         }
     }
     
-    function __destruct() {
+    function __destruct()
+    {
         
     }
 }
