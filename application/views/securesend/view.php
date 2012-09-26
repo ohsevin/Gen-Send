@@ -1,4 +1,4 @@
-<div id="maffyoo">
+<div id="gensend">
     <div id="headlines">
         <?php if(isset($errors)): ?>
         <br />

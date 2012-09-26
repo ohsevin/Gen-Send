@@ -1,4 +1,4 @@
-<div id="maffyoo">
+<div id="gensend">
     <div id="headlines">
         <h3>About Gen&amp;Send</h3>
         <div class="copy">

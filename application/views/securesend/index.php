@@ -1,4 +1,4 @@
-<div id="maffyoo">
+<div id="gensend">
     <div id="headlines">
         <h3>Send your password securely</h3>
         
