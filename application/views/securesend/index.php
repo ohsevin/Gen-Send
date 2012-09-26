@@ -29,11 +29,11 @@
         <div class="col1">
             <ul>
                 <li>Expire after: </li>
-                <li><input type="text" autocomplete="off" maxlength="2" name="expire[days]" id="expire_days" value="<?php echo isset($post['days']['length']) ? $post['days']['length'] : $default_expire_days ; ?>" /><label for="expire_days">days</label></li>
+                <li><input type="text" autocomplete="off" maxlength="2" name="expire[days]" id="expire_days" value="<?php echo isset($post['expire']['days']) ? $post['expire']['days'] : $default_expire_days ; ?>" /><label for="expire_days">days</label></li>
                 <li>
                     OR
                 </li>
-                <li><input type="text" autocomplete="off" maxlength="2" name="expire[views]" id="expire_views" value="<?php echo isset($post['views']['length']) ? $post['views']['length'] : $default_expire_views ; ?>" /><label for="expire_views">views</label></li>
+                <li><input type="text" autocomplete="off" maxlength="2" name="expire[views]" id="expire_views" value="<?php echo isset($post['expire']['days']) ? $post['expire']['views'] : $default_expire_views ; ?>" /><label for="expire_views">views</label></li>
                 <li>Whatever one comes first.</li>
             </ul>
         </div>

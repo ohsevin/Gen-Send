@@ -22,7 +22,7 @@ function set_error_reporting()
 
 function strip_slashes_deep($value)
 {
-    $value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
+    $value = is_array($value) ? array_map('strip_slashes_deep', $value) : stripslashes($value);
     return $value;
 }
 
@@ -72,10 +72,10 @@ function route_url($url, $routing)
 {
     foreach ($routing as $pattern => $result)
     {
-            if (preg_match($pattern, $url))
-            {
-                return preg_replace($pattern, $result, $url);
-            }
+        if (preg_match($pattern, $url))
+        {
+            return preg_replace($pattern, $result, $url);
+        }
     }
     return ($url);
 }
@@ -86,7 +86,10 @@ function run_calls(&$url, $default, $autoload, &$extra_query_string, $routing)
 {
     $query_string = array();
     $extra_query_string = array();
-    $original_url = array();
+    $original_url = array(); // original URL string
+    $original_url_array = array(); // original URL as array
+    $url_array = array(); // URL w/ routing
+    $full_url_array = array(); // URL before controller & action stripped off
     
     if(isset($_GET) && count($_GET) > 0)
     {
@@ -101,34 +104,34 @@ function run_calls(&$url, $default, $autoload, &$extra_query_string, $routing)
         $controller = $default['controller'];
         $action = $default['action'];
         
-        $url_class_name = SYSTEM_PREPEND . 'Url';
-        $url_class = new $url_class_name(array(), $original_url, $extra_query_string);
-        
     }
     else
     {
         $original_url = $url;
-        $url = route_url($url, $routing);
-        $url_array = array();
-        $url_array = explode("/",$url);
+        $original_url_array = explode("/", $original_url); // explode original URL into parts
+        $url = route_url($url, $routing); // route our URL
+        $url_array = explode("/", $url);
+        $full_url_array = $url_array; // set copy of $url_array so we keep the full URL for passing to URL class
         
-        $url_class_name = SYSTEM_PREPEND . 'Url';
-        $url_class = new $url_class_name($url_array, $original_url, $extra_query_string);
+        $controller = $url_array[0]; // controller is first URL part in the array
         
-        $controller = $url_array[0];
+        array_shift($url_array); // shift it
         
-        array_shift($url_array);
         if (isset($url_array[0]) && trim($url_array[0]) != '')
         {
-            $action = $url_array[0];
+            $action = $url_array[0]; // now the action is the first URL part in the array
             array_shift($url_array);
         }
         else
         {
             $action = 'index'; // Default Action
         }
+        
         $query_string = $url_array; // whatever's left in here
     }
+        
+    $url_class_name = SYSTEM_PREPEND . 'Url';
+    $url_class = new $url_class_name($full_url_array, $original_url_array, $extra_query_string);
     
     // load our helpers
     foreach($autoload['helpers'] as $key => $helper)
