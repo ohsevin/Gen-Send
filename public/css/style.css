@@ -132,7 +132,7 @@ form input[type="text"] { float: right; width: 20px; text-align: center; border:
 
 form input[type="checkbox"] { float: right; margin-top: 10px; }
 
-form textarea { width: 384px; border-left: 1px solid #61553C; border-top: 1px solid #3F3727; border-right: 1px solid #AB9D7F; border-bottom: 1px solid #C4B9A3;  padding: 7px; margin-bottom: 10px; background-color: #998760; color: #3C321C; font-weight: bold; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+form textarea { float: right; width: 384px; text-align: center; border: 1px solid #484A4C;  padding: 7px; margin-bottom: 10px; background-color: #767370; color: #fff; font-weight: bold; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; }
 
 form input[type="submit"] { border: 0;  padding: 17px; border: 1px solid #484A4C; background-color: #767370; color: #fff; font-weight: bold; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; text-transform: uppercase; font-size: 130%; margin-top: 10px; margin: 20px auto 0 auto; }
 

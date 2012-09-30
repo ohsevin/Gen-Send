@@ -103,7 +103,10 @@ class SecuresendController extends GNSND_VanillaController {
                 //finally, encrypt our password to save in the database!
                 $this->load_helper('encryption'); // load our encryption helper
                 
-                $password = $this->gnsnd_encryption->encrypt($this->input->post['password']);
+                // replace newlines as it's coming from a textarea
+                $password = $this->input->post('password');
+				$password = preg_replace('~[\r\n]+~', '', $password);
+                $password = $this->gnsnd_encryption->encrypt($password);
                 $this->securesend->pass = $password;
                 
                 

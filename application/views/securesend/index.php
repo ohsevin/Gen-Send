@@ -23,7 +23,7 @@
         <form action="<?=site_url();?>send/" method="post" id="secure_send">
             
         <div class="securesend-password">
-            <input type="text" autocomplete="off" name="password" id="password" value="<?php echo isset($post['password']) ? htmlentities($post['password'], ENT_QUOTES) : $default_password ; ?>" placeholder="Paste your password here:" />
+            <textarea name="password" id="password" placeholder="Enter your password to send here"><?php echo isset($post['password']) ? htmlentities($post['password'], ENT_QUOTES) : $default_password ; ?></textarea>
         </div>
             
         <div class="col1">
