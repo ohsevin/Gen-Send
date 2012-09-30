@@ -10,15 +10,16 @@
         <?php endif; ?>
             
         <?php if(isset($password) && trim($password) != ''): ?>
-        <h2><?php echo htmlentities($password, ENT_QUOTES); ?></h2>
-        <h2 class="sub"><?php echo $phonetic; ?></h2>
-        
-        <form action="<?=site_url();?>send/" method="post">
-            <input type="hidden" value="<?php echo $password; ?>" name="password" />
-            <input type="hidden" value="1" name="password_transfer" />
-            <input type="submit" value="Transfer to secure send tool..." name="submit" />
-        </form>
-        
+	        <h2><?php echo htmlentities($password, ENT_QUOTES); ?></h2>
+	        
+	        <?php if(strlen($password) < 32): ?>
+	        <h2 class="sub"><?php echo $phonetic; ?></h2>
+	        <?php endif; ?>
+	        <form action="<?=site_url();?>send/" method="post">
+	            <input type="hidden" value="<?php echo $password; ?>" name="password" />
+	            <input type="hidden" value="1" name="password_transfer" />
+	            <input type="submit" value="Transfer to secure send tool..." name="submit" />
+	        </form>
         <?php endif; ?>
         <form action="<?=site_url();?>gen/" method="post">
         <div class="col1">
