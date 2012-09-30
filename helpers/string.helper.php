@@ -130,7 +130,7 @@ class GNSND_String {
             $string .= $this->_character_set[rand(0, strlen($this->_character_set) - 1)];
         }
 		
-        // Return our string (shuffle again just because)
+        // Return our string
         return $string;
     }
     
