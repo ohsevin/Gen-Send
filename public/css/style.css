@@ -104,7 +104,7 @@ a:hover { text-decoration: underline; color: #484A4C; }
 
 #main { width: 100%; padding: 0; margin: 0; float: left; color: #484A4C; }
 #gensend { width: 679px; margin: 20px auto 0 auto; text-align: center; 'BebasNeueRegular'; color: #484A4C; }
-#headlines { width: 400px; margin: 0 auto; }
+#headlines { width: 400px; margin: 0 auto; word-wrap: break-word; }
 
 h1 { font-size: 250%; letter-spacing: 0em; margin-bottom: 0px; margin-top: 40px; text-transform: uppercase; text-align: center; font-family: 'BebasNeueRegular'; font-weight: normal; letter-spacing: 0.1em; }
 h2 { margin: 30px 0 10px 0; font-family: Verdana, Arial, sans-serif; letter-spacing: 0.1em; font-weight: normal; }
