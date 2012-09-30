@@ -23,17 +23,17 @@
         <form action="<?=site_url();?>send/" method="post" id="secure_send">
             
         <div class="securesend-password">
-            <input type="text" autocomplete="off" name="password" id="password" value="<?php echo isset($post['password']) ? $post['password'] : $default_password ; ?>" placeholder="Paste your password here:" />
+            <input type="text" autocomplete="off" name="password" id="password" value="<?php echo isset($post['password']) ? htmlspecialchars($post['password']) : $default_password ; ?>" placeholder="Paste your password here:" />
         </div>
             
         <div class="col1">
             <ul>
                 <li>Expire after: </li>
-                <li><input type="text" autocomplete="off" maxlength="2" name="expire[days]" id="expire_days" value="<?php echo isset($post['expire']['days']) ? $post['expire']['days'] : $default_expire_days ; ?>" /><label for="expire_days">days</label></li>
+                <li><input type="text" autocomplete="off" maxlength="2" name="expire[days]" id="expire_days" value="<?php echo isset($post['expire']['days']) ? htmlspecialchars($post['expire']['days']) : $default_expire_days ; ?>" /><label for="expire_days">days</label></li>
                 <li>
                     OR
                 </li>
-                <li><input type="text" autocomplete="off" maxlength="2" name="expire[views]" id="expire_views" value="<?php echo isset($post['expire']['days']) ? $post['expire']['views'] : $default_expire_views ; ?>" /><label for="expire_views">views</label></li>
+                <li><input type="text" autocomplete="off" maxlength="2" name="expire[views]" id="expire_views" value="<?php echo isset($post['expire']['days']) ? htmlspecialchars($post['expire']['views']) : $default_expire_views ; ?>" /><label for="expire_views">views</label></li>
                 <li>Whatever one comes first.</li>
             </ul>
         </div>
