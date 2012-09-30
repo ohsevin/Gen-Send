@@ -11,7 +11,6 @@
     <meta name="description" content="<?php echo (isset($meta['description']) && trim($meta['description']) != '') ? $meta['description'] . META_DESCRIPTION_APPEND : META_DESCRIPTION_DEFAULT; ?>" />
     
     <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
-      
     <script src="js/libs/modernizr-2.5.3.min.js"></script>
 </head>
 

@@ -38,6 +38,12 @@ define('SYSTEM_PREPEND', 'GNSND_'); // generally don't change this as default cl
 /* SITE INFO */
 define('SITE_NAME', '');
 
+/* nofollow stuff */
+define('NOFOLLOW_GEN', true); // generate page
+define('NOFOLLOW_SEND', true); // send page
+define('NOFOLLOW_ABOUT', false); // about page
+define('NOFOLLOW_INFO', true); // info pages for each section 
+
 /* Meta stuff */
 define('META_TITLE_SEPARATOR', ' | ');
 define('META_TITLE_APPEND', 'at your_domain.co.uk');
@@ -45,7 +51,6 @@ define('META_TITLE_DEFAULT', 'at your_domain.co.uk');
 
 define('META_KEYWORDS_APPEND', '');
 define('META_KEYWORDS_DEFAULT', '');
-
 
 define('META_DESCRIPTION_APPEND', '');
 define('META_DESCRIPTION_DEFAULT', '');

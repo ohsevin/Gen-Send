@@ -118,12 +118,20 @@ class GNSND_String {
                 $this->_character_set .= self::$characters[$option];
             }
         }
+		
+		$string = '';
         
         // Let's shuffle the character set to make it randomly ordered
         $this->_character_set = str_shuffle($this->_character_set);
         
+        // Generate our string
+        while(strlen($string) < $length)
+        {
+            $string .= $this->_character_set[rand(0, strlen($this->_character_set) - 1)];
+        }
+		
         // Return our string (shuffle again just because)
-        return substr(str_shuffle($this->_character_set), 0, $length);
+        return $string;
     }
     
     /**
