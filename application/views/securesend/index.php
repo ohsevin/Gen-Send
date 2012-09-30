@@ -34,7 +34,7 @@
                     OR
                 </li>
                 <li><input type="text" autocomplete="off" maxlength="2" name="expire[views]" id="expire_views" value="<?php echo isset($post['expire']['days']) ? htmlspecialchars($post['expire']['views']) : $default_expire_views ; ?>" /><label for="expire_views">views</label></li>
-                <li>Whatever one comes first.</li>
+                <li>Whichever one comes first.</li>
             </ul>
         </div>
         <div class="col2">
