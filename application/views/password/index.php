@@ -10,7 +10,7 @@
         <?php endif; ?>
             
         <?php if(isset($password) && trim($password) != ''): ?>
-        <h2><?php echo htmlentities($password); ?></h2>
+        <h2><?php echo htmlentities($password, ENT_QUOTES); ?></h2>
         <h2 class="sub"><?php echo $phonetic; ?></h2>
         
         <form action="<?=site_url();?>send/" method="post">
@@ -23,7 +23,7 @@
         <form action="<?=site_url();?>gen/" method="post">
         <div class="col1">
             <ul>
-                <li><label for="length">Length:</label> <input type="text" maxlength="2" name="input[length]" id="length" value="<?php echo isset($post['input']['length']) ? htmlspecialchars($post['input']['length']) : $default_password_length ; ?>" /></li>
+                <li><label for="length">Length:</label> <input type="text" maxlength="2" name="input[length]" id="length" value="<?php echo isset($post['input']['length']) ? htmlentities($post['input']['length'], ENT_QUOTES) : $default_password_length ; ?>" /></li>
                 <li>
                     <label for="non_similar_lowercase">Letters:</label>
                     <input id="non_similar_lowercase" type="checkbox" name="options[non_similar_lowercase]" value="true"

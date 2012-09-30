@@ -10,7 +10,7 @@
         <h3 class="password_title">Your password is:</h3>
         <p>&nbsp;</p>
         <p class="password">
-            <?php echo htmlspecialchars($password); ?>
+            <?php echo htmlentities($password, ENT_QUOTES); ?>
         </p>
         <p>&nbsp;</p>
         <p>This password expires on <?php echo $expiry_formatted; ?> or <?php echo $remaining_views; ?> more view<?php echo ($remaining_views == 1) ? '' : 's'; ?>. </p>
