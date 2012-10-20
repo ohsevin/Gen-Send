@@ -19,18 +19,18 @@
         <form action="<?=site_url();?>send/" method="post" id="secure_send">
             
         <div class="securesend-password">
-            <textarea name="password" id="password" placeholder="Enter your password to send here"><?php echo isset($post['password']) ? htmlentities($post['password'], ENT_QUOTES) : $default_password ; ?></textarea>
+            <textarea name="password" id="password" placeholder="Enter the password you wish to send here"><?php echo isset($post['password']) ? htmlentities($post['password'], ENT_QUOTES) : $default_password ; ?></textarea>
         </div>
             
         <div class="col1">
             <ul>
                 <li>Expire after: </li>
-                <li><input type="text" autocomplete="off" maxlength="2" name="expire[days]" id="expire_days" value="<?php echo isset($post['expire']['days']) ? htmlentities($post['expire']['days'], ENT_QUOTES) : $default_expire_days ; ?>" /><label for="expire_days">days</label></li>
+                <li><label for="expire_days">days</label><input type="text" autocomplete="off" maxlength="2" name="expire[days]" id="expire_days" value="<?php echo isset($post['expire']['days']) ? htmlentities($post['expire']['days'], ENT_QUOTES) : $default_expire_days ; ?>" /></li>
                 <li>
                     OR
                 </li>
-                <li><input type="text" autocomplete="off" maxlength="2" name="expire[views]" id="expire_views" value="<?php echo isset($post['expire']['days']) ? htmlentities($post['expire']['views'], ENT_QUOTES) : $default_expire_views ; ?>" /><label for="expire_views">views</label></li>
-                <li>Whichever one comes first.</li>
+                <li><label for="expire_views">views</label><input type="text" autocomplete="off" maxlength="2" name="expire[views]" id="expire_views" value="<?php echo isset($post['expire']['days']) ? htmlentities($post['expire']['views'], ENT_QUOTES) : $default_expire_views ; ?>" /></li>
+                <li>Whichever comes first.</li>
             </ul>
         </div>
         <div class="col2">
