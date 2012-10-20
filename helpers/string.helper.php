@@ -214,7 +214,7 @@ class GNSND_String {
         }
         
         // if we find lowercase letters
-        if (preg_match("/[a-z]/", $string))
+        if(preg_match("/[a-z]/", $string))
         {
             $score++;
         }
@@ -224,7 +224,7 @@ class GNSND_String {
             $score++;
         }
         // if we find a number
-        if (preg_match("/[0-9]/", $string))
+        if(preg_match("/[0-9]/", $string))
         {
             $score++;
         }
@@ -239,7 +239,7 @@ class GNSND_String {
         $punctuation_regex = "/.[" . $punctuation_list . "]/";
         
         // if we find symbols matched in our list of punctuation
-        if (preg_match($punctuation_regex, $string))
+        if(preg_match($punctuation_regex, $string))
         {
             $score++;
         }
