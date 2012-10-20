@@ -18,7 +18,7 @@
 <body>
     <header>
         <div class="wrapper">
-            <h1><a href="<?php echo site_url();?>">Gen&amp;Send</a></h1>
+            <h1><a href="<?php echo site_url();?>">Gen &amp; Send</a></h1>
             <h3>A Password Creation &amp; Push Application</h3>
         </div>
     </header>

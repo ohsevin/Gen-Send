@@ -1,5 +1,19 @@
 <div id="gensend">
-    <div id="headlines">
+    <?php if(isset($password) && trim($password) != ''): ?>
+        <h2>Your password:</h2>
+        <h2 class="password"><?php echo htmlentities($password, ENT_QUOTES); ?></h2>
+        
+        <?php if(strlen($password) < 32): ?>
+        <h2 class="sub password"><?php echo $phonetic; ?></h2>
+        <?php endif; ?>
+        <form class="transfer" action="<?=site_url();?>send/" method="post">
+            <input type="hidden" value="<?php echo $password; ?>" name="password" />
+            <input type="hidden" value="1" name="password_transfer" />
+            <input type="submit" value="Transfer to secure send tool..." name="submit" />
+        </form>
+    <?php endif; ?>
+    
+    <div class="narrow">
         <h3>Generate a random password:</h3>
         
         <?php if(isset($errors)): ?>
@@ -8,19 +22,7 @@
                 <p><?php echo $error; ?></p>
             <?php endforeach; ?>
         <?php endif; ?>
-            
-        <?php if(isset($password) && trim($password) != ''): ?>
-	        <h2><?php echo htmlentities($password, ENT_QUOTES); ?></h2>
-	        
-	        <?php if(strlen($password) < 32): ?>
-	        <h2 class="sub"><?php echo $phonetic; ?></h2>
-	        <?php endif; ?>
-	        <form action="<?=site_url();?>send/" method="post">
-	            <input type="hidden" value="<?php echo $password; ?>" name="password" />
-	            <input type="hidden" value="1" name="password_transfer" />
-	            <input type="submit" value="Transfer to secure send tool..." name="submit" />
-	        </form>
-        <?php endif; ?>
+        
         <form action="<?=site_url();?>gen/" method="post">
         <div class="col1">
             <ul>
@@ -89,26 +91,22 @@
         </div>
         <input type="submit" value="Generate password..." name="submit" />
         </form>
-        <div class="footnotes">
-            <?php if($is_ssl): ?>
-            <p>
-                <strong>This page is secure.</strong>
-            </p>
-            <p>
-                All data on this page is encrypted and sent over SSL.
-            </p>
-            <p>
-                No passwords are stored when generated <br />
-                <strong>
-                    unless you send them securely to the <a href="securesend/">Secure-send tool.</a><br />
-                    this is not done unless you click the "Transfer to secure send tool..." button and complete the form.
-                </strong>
-                
-            </p>
-            <?php endif; ?>
-            <p>
-                Source code for these tools can be found on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a>
-            </p>
-        </div>
+    </div>
+    <div class="footnotes">
+        <?php if($is_ssl): ?>
+        <p>
+            <strong>This page is secure.</strong>
+        </p>
+        <p>
+            All data on this page is encrypted and sent over SSL.
+        </p>
+        <p>
+            No passwords are stored when generated <strong>unless you send them securely to the <a href="securesend/">Secure-send tool.</a><br />This is not done unless you click the "Transfer to secure send tool..." button and complete the form.</strong>
+            
+        </p>
+        <?php endif; ?>
+        <p>
+            Source code for these tools can be found on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a>
+        </p>
     </div>
 </div>

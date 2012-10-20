@@ -1,5 +1,5 @@
 <div id="gensend">
-    <div id="headlines">
+    <div class="narrow">
         <h3>Send your password securely</h3>
         
         <?php if(isset($errors)): ?>
@@ -12,12 +12,8 @@
             
         <?php if(isset($success) && $success): ?>
         <h2>URL Generated:</h2>
-        <p>&nbsp;</p>
-        <p>
+        <p class="generated_url">
             <?php echo site_url() . 'v/' . $url ;?>
-        </p>
-        <p>
-            &nbsp;
         </p>
         <?php else: ?>
         <form action="<?=site_url();?>send/" method="post" id="secure_send">
@@ -53,21 +49,21 @@
         <input type="submit" value="Generate secure link..." name="submit" />
         </form>
         <?php endif; ?>
-        <div class="footnotes">
-            <?php if($is_ssl): ?>
-            <p>
-                <strong>This page is secure.</strong>
-            </p>
-            <p>
-                All data on this page is encrypted and sent over SSL.
-            </p>
-            <p>
-                All passwords are deleted from the database when they expire. <br />(either through views or time)
-            </p>
-            <?php endif; ?>
-            <p>
-                Source code for these tools can be found on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a>
-            </p>
-        </div>
+    </div>
+    <div class="footnotes">
+        <?php if($is_ssl): ?>
+        <p>
+            <strong>This page is secure.</strong>
+        </p>
+        <p>
+            All data on this page is encrypted and sent over SSL.
+        </p>
+        <p>
+            All passwords are deleted from the database when they expire. <br />(either through views or time)
+        </p>
+        <?php endif; ?>
+        <p>
+            Source code for these tools can be found on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a>
+        </p>
     </div>
 </div>
