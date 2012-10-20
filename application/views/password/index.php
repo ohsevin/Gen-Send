@@ -3,8 +3,9 @@
         <h2>Your password:</h2>
         <h2 class="password"><?php echo htmlentities($password, ENT_QUOTES); ?></h2>
         
-        <?php if(strlen($password) < 32): ?>
-        <h2 class="sub password"><?php echo $phonetic; ?></h2>
+        <?php if(strlen($password) <= 16): ?>
+            <hr class="sub" />
+            <h2 class="password"><?php echo $phonetic; ?></h2>
         <?php endif; ?>
         <form class="transfer" action="<?=site_url();?>send/" method="post">
             <input type="hidden" value="<?php echo $password; ?>" name="password" />
