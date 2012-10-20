@@ -183,7 +183,9 @@ form#secure_send label { margin-left: 50px; }
 form.transfer { margin-bottom: 40px; background: transparent url(../img/shadow.png) center bottom no-repeat; padding: 25px 0 40px 0; }
 .securesend-password { margin-bottom: 20px; }
 .generated_url { margin: 20px 0; font-size: 155%; font-weight: normal; }
-.password_display { margin: 30px 0 40px 0; font-size: 155%; }
+
+.password_display { margin: 30px 0 40px 0; font-size: 195%; }
+
 .copy { text-align: left; color: #8B8B8B; }
 
 footer { color: #828282; text-align: center; background: transparent url(../img/shadow.png) center top no-repeat; padding: 20px 0 0 0; margin: 20px 0 30px 0; }
