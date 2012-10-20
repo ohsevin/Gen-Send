@@ -177,8 +177,8 @@ form ul { list-style-type: none; }
 
 form input#length, form input#expire_days, form input#expire_views { width: 25px; text-align: center; }
 
-form input#expire_days, form input#expire_views { margin-right: 50px; }
-form#secure_send label { margin-left: 50px; }
+form input#expire_days, form input#expire_views { margin-left: 60px; float: left; }
+form#secure_send label { float: right; margin-right: 65px; text-align: left; width: 30px; }
 
 form.transfer { margin-bottom: 40px; background: transparent url(../img/shadow.png) center bottom no-repeat; padding: 25px 0 40px 0; }
 .securesend-password { margin-bottom: 20px; }
