@@ -5,7 +5,7 @@
         
         <?php if(strlen($password) <= 16): ?>
             <hr class="sub" />
-            <h2 class="password"><?php echo $phonetic; ?></h2>
+            <h2 class="phonetic password"><?php echo $phonetic; ?></h2>
         <?php endif; ?>
         <form class="transfer" action="<?=site_url();?>send/" method="post">
             <input type="hidden" value="<?php echo $password; ?>" name="password" />

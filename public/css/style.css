@@ -142,6 +142,7 @@ ul { margin: 0; padding: 0; }
 .wrapper { width: 960px; margin: 0 auto; }
 #gensend { width: 960px; margin: 0 auto; text-align: center; }
 .password { font-family: Courier; font-weight: normal; }
+.phonetic { font-size: 13px; }
 
 header { text-align: center; }
     header h1 { font-size: 500%; color: #E7E7E7; margin: 15px 0 2px 0; font-weight: normal; }
