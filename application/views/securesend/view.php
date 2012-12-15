@@ -8,9 +8,9 @@
         
         <?php else: ?>
         <h3 class="password_title">Your password is:</h3>
-        <p class="password password_display">
-            <?php echo htmlentities($password, ENT_QUOTES); ?>
-        </p>
+        <form action="" method="post">
+	        <textarea name="password" class="generated_url password_display password"><?php echo ($password); ?></textarea>
+        </form>
         <p>This password expires on <?php echo $expiry_formatted; ?> or <?php echo $remaining_views; ?> more view<?php echo ($remaining_views == 1) ? '' : 's'; ?>. </p>
         <div class="footnotes">
             <?php if($is_ssl): ?>

@@ -43,7 +43,7 @@ class GNSND_Encryption {
         $value = base64_decode($value);
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(self::ENCRYPT_CIPHER, self::ENCRYPT_MODE), self::ENCRYPT_RAND);
         
-        $password = mcrypt_decrypt(self::ENCRYPT_CIPHER, self::ENCRYPT_KEY, $value, self::ENCRYPT_MODE, $iv);
+        $password = trim(mcrypt_decrypt(self::ENCRYPT_CIPHER, self::ENCRYPT_KEY, $value, self::ENCRYPT_MODE, $iv));
         
         return $password;        
     }
