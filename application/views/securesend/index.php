@@ -14,7 +14,7 @@
         <h2>URL Generated:</h2>
         
         <form action="" method="post">
-	        <textarea name="passwordUrl" class="generated_url"><?php echo site_url() . 'v/' . $url ;?></textarea>
+	        <textarea name="passwordUrl" class="generated_url"><?php echo SECURE_SITE_URL . 'v/' . $url ;?></textarea>
         </form>
         
         <p>
