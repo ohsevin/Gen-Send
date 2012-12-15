@@ -11,6 +11,6 @@ if(isset($_GET['url'])) // if we have a URL in our $_GET array
     unset($_GET['url']); // unset the URL from $_GET array 
 }
 
- 
+
 // load bootstrap
 require_once(ROOT . DS . 'system' . DS . 'bootstrap.php');

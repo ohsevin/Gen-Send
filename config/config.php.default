@@ -21,6 +21,8 @@ define('LOG_ERRORS', true);
 
 define('GLOBAL_SSL', false); // do we force global SSL for the whole thing
 
+define('DEFAULT_TIMEZONE', 'Europe/London'); // or something like America/Los_Angeles
+
 define('GEN_SEND_URL', 'https://gensend.com');
 define('GEN_SEND_GITHUB_URL', 'https://github.com/Brunty/Gen-Send');
 

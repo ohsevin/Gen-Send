@@ -84,6 +84,9 @@ function route_url($url, $routing)
 
 function run_calls(&$url, $default, $autoload, &$extra_query_string, $routing)
 {
+	// set timezone here
+	date_default_timezone_set(DEFAULT_TIMEZONE);
+	
     $query_string = array();
     $extra_query_string = array();
     $original_url = array(); // original URL string
