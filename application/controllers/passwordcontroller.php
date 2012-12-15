@@ -61,6 +61,14 @@ class PasswordController extends GNSND_VanillaController {
         }
     }
     
+	
+	public function help()
+	{
+        $this->meta['title'] = 'About the Gen&Send Password Generator';
+        $this->meta['description'] = '';
+        $this->meta['keywords'] = '';
+	}
+	
     public function after_action()
     {
 

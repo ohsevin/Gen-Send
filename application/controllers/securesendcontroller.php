@@ -192,6 +192,13 @@ class SecuresendController extends GNSND_VanillaController {
             $this->set('errors', $errors);
         }
     }
+
+	public function help()
+	{
+        $this->meta['title'] = 'About the Gen&Send Password Sender';
+        $this->meta['description'] = '';
+        $this->meta['keywords'] = '';
+	}
     
     public function cron_update() // cron update function
     {
