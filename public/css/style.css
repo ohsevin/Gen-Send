@@ -9,7 +9,6 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 body { margin: 0; font-size: 13px; line-height: 1.4; }
 
-
 html, body { min-height: 100%; }
 
 ::-moz-selection { background: #3BA3D0; color: #fff; text-shadow: none; }
@@ -173,6 +172,7 @@ form input[type=text] { padding: 3px 5px; width: auto; float: right; line-height
 form input[type=checkbox] { float: right; margin-right: 12px; margin-top: 2px; }
 form input[type=submit] { padding: 10px; width: auto; font-size: 140%; line-height: 1.7em; text-decoration: none; background-color: #1E1E1E; border: 1px solid #8B8B8B; color: #E7E7E7; }
 
+form textarea.generated_url { resize: none; background-color: #FDFDFD; color: #1E1E1E; width: 440px; font-size: 140%; text-align: center; padding-top: 20px; padding-bottom: 20px; height: 25px; }
 form ul { list-style-type: none; }
     form ul li{ height: 40px; margin-bottom: 10px; }
 

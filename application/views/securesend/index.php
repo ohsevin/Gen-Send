@@ -12,8 +12,16 @@
             
         <?php if(isset($success) && $success): ?>
         <h2>URL Generated:</h2>
-        <p class="generated_url">
-            <?php echo site_url() . 'v/' . $url ;?>
+        
+        <form action="" method="post">
+	        <textarea name="passwordUrl" class="generated_url"><?php echo site_url() . 'v/' . $url ;?></textarea>
+        </form>
+        
+        <p>
+        	Click the link below to test the URL:<br /> <em>note: this will use one of the views allowed for the password</em>
+        </p>
+        <p>
+        	<a href="<?php echo site_url() . 'v/' . $url ;?>"><?php echo site_url() . 'v/' . $url ;?></a>
         </p>
         <?php else: ?>
         <form action="<?php echo site_url();?>send/" method="post" id="secure_send">

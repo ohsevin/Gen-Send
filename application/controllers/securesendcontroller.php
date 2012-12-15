@@ -140,7 +140,7 @@ class SecuresendController extends GNSND_VanillaController {
         }
     }
     
-    public function v() // our view function, named v for short-ness of URLs
+    public function v() // our view function, named v for short-ness of URLs - could also be done with the REGEX url matching in routing.php I guess
     {
     	// disable browser caching.
     	$this->set_header('Cache-Control: no-cache, must-revalidate'); // HTTP/1.1
