@@ -21,7 +21,7 @@
         	Click the link below to test the URL:<br /> <em>note: this will use one of the views allowed for the password</em>
         </p>
         <p>
-        	<a href="<?php echo site_url() . 'v/' . $url ;?>"><?php echo site_url() . 'v/' . $url ;?></a>
+        	<a href="<?php echo SECURE_SITE_URL . 'v/' . $url ;?>"><?php echo SECURE_SITE_URL . 'v/' . $url ;?></a>
         </p>
         <?php else: ?>
         <form action="<?php echo site_url();?>send/" method="post" id="secure_send">
