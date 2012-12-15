@@ -7,6 +7,9 @@
     <meta charset="utf-8">
     <base href="<?php echo site_url();?>" />
     <title><?php echo (isset($meta['title']) && trim($meta['title']) != '') ? $meta['title'] . META_TITLE_SEPARATOR . META_TITLE_APPEND : META_TITLE_DEFAULT; ?></title>
+    
+    <?php if(!ALLOW_ROBOTS): ?><meta name="robots" content="noindex, nofollow" /><?php endif; ?>
+    
     <meta name="keywords" content="<?php echo (isset($meta['keywords']) && trim($meta['keywords']) != '') ? $meta['keywords'] . META_KEYWORDS_APPEND : META_KEYWORDS_DEFAULT; ?>" />
     <meta name="description" content="<?php echo (isset($meta['description']) && trim($meta['description']) != '') ? $meta['description'] . META_DESCRIPTION_APPEND : META_DESCRIPTION_DEFAULT; ?>" />
     

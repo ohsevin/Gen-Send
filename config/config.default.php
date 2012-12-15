@@ -17,6 +17,8 @@ define('SYSADMIN_EMAIL', 'sysadmin@your_domain.co.uk');
 define('SECURE_BASE_PATH', 'https://your_domain.co.uk'); // no trailing slash, typically the same as BASE_PATH but with https:// instead of http://
 define('SECURE_SITE_URL', SECURE_BASE_PATH . '/');
 
+define('ALLOW_ROBOTS', true); // set to false to add nofollow meta on the site globally
+
 define('LOG_ERRORS', true);
 
 define('GLOBAL_SSL', false); // do we force global SSL for the whole thing

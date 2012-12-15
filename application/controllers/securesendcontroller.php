@@ -149,7 +149,6 @@ class SecuresendController extends GNSND_VanillaController {
         // set the template to be "view" instead of the default of "v" for the action
         $this->set_template('view');
         
-        
         // get our URL part
         $url = $this->url->segment(3);
         
