@@ -59,6 +59,7 @@ class SecuresendController extends GNSND_VanillaController {
                 )
             );
             
+			// setup our validator with the rules
             $this->validation->setup($this->input->post, $rules);
             
             if($this->validation->validate()) // successful form submission
