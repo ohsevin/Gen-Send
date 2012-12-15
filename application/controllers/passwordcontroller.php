@@ -4,6 +4,9 @@ class PasswordController extends GNSND_VanillaController {
     
     public function before_action ()
     {
+    	$this->set_header('Cache-Control: no-cache, must-revalidate'); // HTTP/1.1
+    	$this->set_header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+    	
         $is_ssl = (GLOBAL_SSL) ? GLOBAL_SSL : false;
         $this->set_ssl($is_ssl);
         $this->set('is_ssl', $is_ssl);

@@ -4,10 +4,9 @@
         <h2 class="password"><?php echo htmlentities($password, ENT_QUOTES); ?></h2>
         
         <?php if(strlen($password) <= 16): ?>
-            <hr class="sub" />
             <h2 class="phonetic password"><?php echo $phonetic; ?></h2>
         <?php endif; ?>
-        <form class="transfer" action="<?=site_url();?>send/" method="post">
+        <form class="transfer" action="<?php echo site_url();?>send/" method="post">
             <input type="hidden" value="<?php echo $password; ?>" name="password" />
             <input type="hidden" value="1" name="password_transfer" />
             <input type="submit" value="Transfer to secure send tool..." name="submit" />
@@ -24,7 +23,7 @@
             <?php endforeach; ?>
         <?php endif; ?>
         
-        <form action="<?=site_url();?>gen/" method="post">
+        <form action="<?php echo site_url();?>gen/" method="post">
         <div class="col1">
             <ul>
                 <li><label for="length">Length:</label> <input type="text" maxlength="2" name="input[length]" id="length" value="<?php echo isset($post['input']['length']) ? htmlentities($post['input']['length'], ENT_QUOTES) : $default_password_length ; ?>" /></li>

@@ -16,7 +16,7 @@
             <?php echo site_url() . 'v/' . $url ;?>
         </p>
         <?php else: ?>
-        <form action="<?=site_url();?>send/" method="post" id="secure_send">
+        <form action="<?php echo site_url();?>send/" method="post" id="secure_send">
             
         <div class="securesend-password">
             <textarea name="password" id="password" placeholder="Enter the password you wish to send here"><?php echo isset($post['password']) ? htmlentities($post['password'], ENT_QUOTES) : $default_password ; ?></textarea>

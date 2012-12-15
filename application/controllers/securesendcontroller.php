@@ -142,6 +142,10 @@ class SecuresendController extends GNSND_VanillaController {
     
     public function v() // our view function, named v for short-ness of URLs
     {
+    	// disable browser caching.
+    	$this->set_header('Cache-Control: no-cache, must-revalidate'); // HTTP/1.1
+    	$this->set_header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		
         // set the template to be "view" instead of the default of "v" for the action
         $this->set_template('view');
         

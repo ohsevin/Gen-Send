@@ -142,7 +142,7 @@ ul { margin: 0; padding: 0; }
 .wrapper { width: 960px; margin: 0 auto; }
 #gensend { width: 960px; margin: 0 auto; text-align: center; }
 .password { font-family: Courier; font-weight: normal; }
-.phonetic { font-size: 13px; }
+.phonetic { font-size: 13px; border-top: 1px solid #CECECE; padding: 15px 0 0 0; width: 600px; margin: 0 auto; }
 
 header { text-align: center; }
     header h1 { font-size: 500%; color: #E7E7E7; margin: 15px 0 2px 0; font-weight: normal; }
@@ -188,7 +188,6 @@ form.transfer { margin-bottom: 40px; background: transparent url(../img/shadow.p
 .password_display { margin: 30px 0 40px 0; font-size: 195%; }
 
 .copy { text-align: left; color: #8B8B8B; }
-hr.sub { width: 600px; margin: 0 auto; height: 1px; background-color: #CECECE; }
 footer { color: #828282; text-align: center; background: transparent url(../img/shadow.png) center top no-repeat; padding: 20px 0 0 0; margin: 20px 0 30px 0; }
     
     footer a:link, footer a:visited, footer a:hover, footer a:active { color: #828282; }

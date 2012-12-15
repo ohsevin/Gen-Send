@@ -6,6 +6,7 @@ class GNSND_VanillaController {
     protected $_action;
     protected $_template;
     protected $_ssl = false;
+	protected $_headers = array();
     
     public $meta = array('title' => '', 'keyword' => '', 'description' => '');
     public $no_render_chrome;
@@ -52,6 +53,19 @@ class GNSND_VanillaController {
         $this->_template->set($name,$value);
     }
     
+	public function set_header($content = '')
+	{
+		if(trim($content) == '' || !$content)
+		{
+			return false;
+		}
+		else
+		{
+			$this->_headers[] = $content;
+			return true;
+		}
+	}
+	
     public function redirect($uri = '', $method = 'location', $http_response_code = 302)
     {
         if ( ! preg_match('#^https?://#i', $uri))
@@ -144,6 +158,14 @@ class GNSND_VanillaController {
             $this->$var_name = new $library_name;
         }
     }
+	
+	protected function _generate_headers()
+	{
+		foreach($this->_headers as $header)
+		{
+			header($header);
+		}
+	}
 
     function __destruct()
     {
@@ -161,6 +183,8 @@ class GNSND_VanillaController {
             redirect(SITE_URL . $url . $query_string);
         }
         
+		// output headers before anything else
+		$this->_generate_headers();
         
         if ($this->render) {
             
