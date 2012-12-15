@@ -3,7 +3,7 @@ Gen&Send
 
 Installation:
 
-1. Rename config.php.default to config.php
+1. Rename config.default.php to config.php
 2. Setup config.php with your details (paths, DB access etc - make sure you already have a DB with user setup)
 3. Import the DB script in db/ into your Database
 4. Make sure tmp/* is writable by the webserver owner (e.g. www-data, apache, whatever)
