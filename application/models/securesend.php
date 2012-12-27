@@ -54,9 +54,15 @@ class Securesend extends GNSND_VanillaModel {
         $hash_query = "UPDATE `" . $this->_table . "` SET `pass` = :randomhash, `url` = :randomurlhash WHERE `expiration_date` < :date AND `expiration_date` <> :defaultdate ";
         
         $this->load_helper('string');
-        
-        $random_hash = $this->gnsnd_string->generate_random_string(32);
-        $random_url_hash = $this->gnsnd_string->generate_random_string(8);
+		$this->load_helper('crypt', 'crypt'); // load our crypt helper to generate secure random numbers
+		
+		// details for random string generation
+		$lengthHash = 32;
+		$lengthUrl = 8;
+		$options = array();
+		
+        $random_hash = $this->gnsnd_string->generate_random_string($lengthHash, $options, $this->crypt);
+        $random_url_hash = $this->gnsnd_string->generate_random_string($lengthUrl, $options, $this->crypt);
         
         $hash_run_query = $this->db->prepare($hash_query);
         
@@ -102,9 +108,15 @@ class Securesend extends GNSND_VanillaModel {
         $hash_query = "UPDATE `" . $this->_table . "` SET `pass` = :random-hash, `url` = :random-url-hash WHERE `id` = :id";
         
         $this->load_helper('string');
-        
-        $random_hash = $this->gnsnd_string->generate_random_string(32);
-        $random_url_hash = $this->gnsnd_string->generate_random_string(8);
+		$this->load_helper('crypt', 'crypt'); // load our crypt helper to generate secure random numbers
+		
+		// details for random string generation
+		$lengthHash = 32;
+		$lengthUrl = 8;
+		$options = array();
+		
+        $random_hash = $this->gnsnd_string->generate_random_string($lengthHash, $options, $this->crypt);
+        $random_url_hash = $this->gnsnd_string->generate_random_string($lengthUrl, $options, $this->crypt);
         
         $hash_run_query = $this->db->prepare($hash_query);
         

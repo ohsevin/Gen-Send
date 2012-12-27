@@ -91,7 +91,6 @@ class SecuresendController extends GNSND_VanillaController {
                 // while the URL isn't unique
                 while(!$url_unique)
                 {
-                	
 					$this->load_helper('crypt', 'crypt'); // load our crypt helper to generate secure random numbers
 					
 					// details for random string generation
