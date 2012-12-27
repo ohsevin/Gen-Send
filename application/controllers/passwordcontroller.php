@@ -41,8 +41,9 @@ class PasswordController extends GNSND_VanillaController {
             {
                 $this->set('success', true);
                 $this->load_helper('string'); // load our string helper
+				$this->load_helper('crypt', 'crypt'); // load our crypt helper to generate secure random numbers
                 
-                $password = $this->gnsnd_string->generate_random_string($this->input->post['input']['length'], $this->input->post('options'));
+                $password = $this->gnsnd_string->generate_random_string($this->input->post['input']['length'], $this->input->post('options'), $this->crypt);
                 $phonetic = $this->gnsnd_string->to_phonetic($password);
                 
                 $this->meta['title'] = 'Your password has been generated!';

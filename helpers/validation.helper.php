@@ -164,10 +164,10 @@ class GNSND_Validation {
     {
         if(!empty($data))
         {
-            $this->_data = $data;
+            $this->_data = $data; // set data to validate if passed to this function - overwrites existing data.
         }
         
-        if(count($this->_rules) == 0)
+        if(count($this->_rules) == 0) // no rules set
         {
             $this->errors['validation_rules'] = 'No rules have been set for validation.';
         }
@@ -474,7 +474,7 @@ class GNSND_Validation {
      */
     protected function _generate_rule_key($key = '')
     {
-        // here we
+        // set the rule key to return
         $rule_key = '';
         
         // if we have parents - implode using the separator

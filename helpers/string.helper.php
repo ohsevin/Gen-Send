@@ -102,7 +102,7 @@ class GNSND_String {
      *
      *    @access    public
      */
-    public function generate_random_string($length = 8, $options = array())
+    public function generate_random_string($length = 8, $options = array(), GNSND_Crypt $crypt)
     {
         // If no options set, use default ones.
         if(empty($options))
@@ -123,11 +123,11 @@ class GNSND_String {
         
         // Let's shuffle the character set to make it randomly ordered
         $this->_character_set = str_shuffle($this->_character_set);
-        
+        	
         // Generate our string
         while(strlen($string) < $length)
         {
-            $string .= $this->_character_set[rand(0, strlen($this->_character_set) - 1)];
+            $string .= $this->_character_set[$crypt->random_number(0, strlen($this->_character_set) - 1)];
         }
 		
         // Return our string
