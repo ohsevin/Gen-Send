@@ -194,6 +194,11 @@ class SecuresendController extends GNSND_VanillaController {
         }
         else
         {
+            // meta stuff
+            $this->meta['title'] = 'Invalid URL';
+            $this->meta['description'] = '';
+            $this->meta['keywords'] = '';
+			
             $errors[] = 'Invalid URL'; // add invalid URL message onto errors (DB row doesn't exist with that URL)
             $this->set('errors', $errors);
         }
