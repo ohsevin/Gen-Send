@@ -91,9 +91,16 @@ class SecuresendController extends GNSND_VanillaController {
                 // while the URL isn't unique
                 while(!$url_unique)
                 {
+                	
+					$this->load_helper('crypt', 'crypt'); // load our crypt helper to generate secure random numbers
+					
+					// details for random string generation
+					$length = 8;
+					$options = array();
+					
                     // to generate the URL we'll basically use my string helper class to create a new URL, and check it doesn't exist...
                     // it's not tied to a DB row ID then, so it's not generated from that number, meaning harder to crack.
-                    $this->securesend->url = $this->gnsnd_string->generate_random_string(); // 8 chars default length, should be fine.
+                    $this->securesend->url = $this->gnsnd_string->generate_random_string($length, $options, $this->crypt); // 8 chars default length, should be fine.
                     
                     if(!$this->securesend->url_exists()) // if the url doesn't already exist in the DB
                     {
