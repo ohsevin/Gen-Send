@@ -31,6 +31,7 @@ UrlToolkit {
 The only DB driver I've tested this with is MySQL - others I'll look at adding eventually - it uses PDO for the database interaction.
 
 Requires mcrypt
+
 Requires the oppenssl module to be enabled in PHP for the use of openssl_random_pseudo_bytes()
 
 /public/ holds the CSS, images, JS etc.
