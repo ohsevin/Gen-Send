@@ -7,9 +7,9 @@ Installation:
 2. Setup config.php with your details (paths, DB access etc - make sure you already have a DB with user setup)
 3. Import the DB script in db/ into your Database
 4. Make sure tmp/* is writable by the webserver owner (e.g. www-data, apache, whatever)
-5. Setup a cron task to run: SITE_URL/securesend/cron_update/$hash where $hash is the hash you set in your config file - it only needs to run once per day preferably at midnight
+5. Setup a cron task to run: SITE_URL/send/cron_update/$hash where $hash is the hash you set in your config file - it only needs to run once per day preferably at midnight
 
-curl -s -o /dev/null "SITE_URL/securesend/cron_update/$hash"   
+curl -s -o /dev/null "SITE_URL/send/cron_update/$hash"   
 
 I think that's just about it! After that, you can change the styles if you want.
 
@@ -31,6 +31,7 @@ UrlToolkit {
 The only DB driver I've tested this with is MySQL - others I'll look at adding eventually - it uses PDO for the database interaction.
 
 Requires mcrypt
+
 Requires the oppenssl module to be enabled in PHP for the use of openssl_random_pseudo_bytes()
 
 /public/ holds the CSS, images, JS etc.
