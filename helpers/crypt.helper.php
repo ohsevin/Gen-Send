@@ -9,7 +9,7 @@
 * @version    0.0.3
 */
 
-class Crypt {
+class GNSND_Crypt {
     
     /**
      *    Generates a random number between two given values
