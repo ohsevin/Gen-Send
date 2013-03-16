@@ -26,8 +26,6 @@ function strip_slashes_deep($value)
     return $value;
 }
 
-/* some changes... */
-
 function remove_magic_quotes()
 {
     if (get_magic_quotes_gpc())
