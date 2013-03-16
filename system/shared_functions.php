@@ -26,7 +26,7 @@ function strip_slashes_deep($value)
     return $value;
 }
 
-
+// some more changes?
 
 function remove_magic_quotes()
 {
