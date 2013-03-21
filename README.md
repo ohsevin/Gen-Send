@@ -16,7 +16,7 @@ I think that's just about it! After that, you can change the styles if you want.
 This does use Apache specific re-writes in the .htaccess files as standard.
 
 For Hiawatha do the following:
-
+ 
 1. Set the /public/ dir as the website root, e.g. /path/to/gensend/public
 2. Make sure gensend/tmp/* is writable by the webserver owner (e.g. www-data, apache, whatever -- this applies to any webserver, not just Hiawatha)
 3. Use the following Toolkit:
