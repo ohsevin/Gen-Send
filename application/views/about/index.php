@@ -21,7 +21,7 @@
 
             </p>
             <p>
-                <strong>Is this site's encryption trustworthy? <a href="https://www.ssllabs.com/ssltest/analyze.html?d=<?php echo URL_NO_PROTOCOL; ?>">Test it!</a></strong>
+                <strong>Is this site's encryption trustworthy? <a href="https://www.ssllabs.com/ssltest/analyze.html?d=<?php echo SITE_DOMAIN; ?>">Test it!</a></strong>
             </p>
         </div>
     </div>
