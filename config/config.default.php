@@ -9,13 +9,17 @@ define('DB_USER', '');
 define('DB_PASSWORD', '');
 define('DB_HOST', 'localhost');
 
-define('BASE_PATH', 'http://your_domain.co.uk'); // no trailing slash!
+define('SITE_DOMAIN', 'your_domain.co.uk');
+define('INSTALL_DIR', ''); // no preceding or trailing slash - BLANK if installed in root DIR.
+define('URL_NO_PROTOCOL', SITE_DOMAIN . '/' . INSTALL_DIR);
+
+define('BASE_PATH', 'http://' . URL_NO_PROTOCOL); // no trailing slash!
 define('SITE_URL', BASE_PATH . '/');
 
-define('SYSADMIN_EMAIL', 'sysadmin@your_domain.co.uk');
-
-define('SECURE_BASE_PATH', 'https://your_domain.co.uk'); // no trailing slash, typically the same as BASE_PATH but with https:// instead of http://
+define('SECURE_BASE_PATH', 'https://' . URL_NO_PROTOCOL); // no trailing slash, typically the same as BASE_PATH but with https:// instead of http://
 define('SECURE_SITE_URL', SECURE_BASE_PATH . '/');
+
+define('SYSADMIN_EMAIL', 'sysadmin@your_domain.co.uk');
 
 define('ALLOW_ROBOTS', true); // set to false to add nofollow meta on the site globally
 

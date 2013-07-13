@@ -15,13 +15,13 @@
                 No information about you is stored in the database. Only what you enter here and the URL to identify this password which is a randomly generated string.
             </p>
             <p>
-                Further improvements to the application will be made over time, these changes will be released on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a> as they're completed.
+                Further improvements to the application will be made over time, these changes will be released along with the source code on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a> as they're completed.
             </p>
             <p>
-                Source code for these tools can be found on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a>
+
             </p>
             <p>
-                <strong>Is this site's encryption trustworthy? Test it!</strong> <a href="https://www.ssllabs.com/ssltest/analyze.html?d=<?php echo SECURE_SITE_URL; ?>">https://www.ssllabs.com/ssltest/analyze.html?d=<?php echo SECURE_SITE_URL; ?></a>
+                <strong>Is this site's encryption trustworthy? <a href="https://www.ssllabs.com/ssltest/analyze.html?d=<?php echo URL_NO_PROTOCOL; ?>">Test it!</a></strong>
             </p>
         </div>
     </div>
