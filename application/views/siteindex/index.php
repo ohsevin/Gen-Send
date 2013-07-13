@@ -20,7 +20,7 @@
         </p>
         <?php endif; ?>
         <p>
-            <strong>Is this site's encryption trustworthy? <a href="https://www.ssllabs.com/ssltest/analyze.html?d=<?php echo SITE_DOMAIN; ?>">Test it!</a></strong>
+            Source code for these tools can be found on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a>
         </p>
     </div>
 </div>
