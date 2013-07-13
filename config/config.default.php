@@ -10,12 +10,12 @@ define('DB_PASSWORD', '');
 define('DB_HOST', 'localhost');
 
 define('SITE_DOMAIN', 'your_domain.co.uk');
-define('INSTALL_DIR', ''); // no preceding or trailing slash - BLANK if installed in root DIR.
-define('URL_NO_PROTOCOL', SITE_DOMAIN . '/' . INSTALL_DIR);
+define('INSTALL_DIR', ''); // If installed in asubdirectory, preceeding slash required, no trailing slash - BLANK if installed in root DIR.
+define('URL_NO_PROTOCOL', SITE_DOMAIN . INSTALL_DIR); 
 
 define('SITE_URL', 'http://' . URL_NO_PROTOCOL . '/');
-
 define('SECURE_SITE_URL', 'https://' . URL_NO_PROTOCOL . '/');
+define('BASE_PATH', SITE_URL);
 
 define('SYSADMIN_EMAIL', 'sysadmin@your_domain.co.uk');
 
