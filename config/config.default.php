@@ -13,11 +13,9 @@ define('SITE_DOMAIN', 'your_domain.co.uk');
 define('INSTALL_DIR', ''); // no preceding or trailing slash - BLANK if installed in root DIR.
 define('URL_NO_PROTOCOL', SITE_DOMAIN . '/' . INSTALL_DIR);
 
-define('BASE_PATH', 'http://' . URL_NO_PROTOCOL); // no trailing slash!
-define('SITE_URL', BASE_PATH . '/');
+define('SITE_URL', 'http://' . URL_NO_PROTOCOL . '/');
 
-define('SECURE_BASE_PATH', 'https://' . URL_NO_PROTOCOL); // no trailing slash, typically the same as BASE_PATH but with https:// instead of http://
-define('SECURE_SITE_URL', SECURE_BASE_PATH . '/');
+define('SECURE_SITE_URL', 'https://' . URL_NO_PROTOCOL . '/');
 
 define('SYSADMIN_EMAIL', 'sysadmin@your_domain.co.uk');
 
@@ -25,7 +23,7 @@ define('ALLOW_ROBOTS', true); // set to false to add nofollow meta on the site g
 
 define('LOG_ERRORS', true);
 
-define('GLOBAL_SSL', false); // do we force global SSL for the whole thing
+define('GLOBAL_SSL', true); // do we force global SSL for the whole thing
 
 define('DEFAULT_TIMEZONE', 'Europe/London'); // or something like America/Los_Angeles
 
