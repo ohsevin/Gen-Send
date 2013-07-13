@@ -27,10 +27,10 @@ class PasswordController extends GNSND_VanillaController {
             
             $rules = array(
                 'input|length'    =>    array(
-                    'required'                =>    true,
-                    'filters'                =>    'int',
-                    'min_value'                =>    4,
-                    'max_value'                =>    99
+                    'required'              =>    true,
+                    'filters'               =>    'int',
+                    'min_value'             =>    4,
+                    'max_value'             =>    99
                 )
             );
             

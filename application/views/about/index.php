@@ -20,6 +20,9 @@
             <p>
                 Source code for these tools can be found on <a href="<?php echo GEN_SEND_GITHUB_URL; ?>">Github</a>
             </p>
+            <p>
+                <strong>Is this site's encryption trustworthy? Test it!</strong> <a href="https://www.ssllabs.com/ssltest/analyze.html?d=<?php echo SECURE_SITE_URL; ?>">https://www.ssllabs.com/ssltest/analyze.html?d=<?php echo SECURE_SITE_URL; ?></a>
+            </p>
         </div>
     </div>
 </div>
