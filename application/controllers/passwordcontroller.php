@@ -15,7 +15,7 @@ class PasswordController extends GNSND_VanillaController {
     
     public function index()
     {
-        $this->set('default_password_length', 8);
+        $this->set('default_password_length', DEFAULT_PASSWORD_LENGTH);
         
         $this->meta['title'] = 'Generate a random password';
         $this->meta['description'] = 'Use this tool to generate a random password with configuration options.';

@@ -38,6 +38,8 @@ define('SERVER_SSL_PORT', 443); // change if different on your server
 define('DEFAULT_EXPIRE_DAYS', 7);
 define('DEFAULT_EXPIRE_VIEWS', 3);
 
+define('DEFAULT_PASSWORD_LENGTH', 8);
+
 /* prepends and schtuff */
 define('SYSTEM_PREPEND', 'GNSND_'); // generally don't change this as default classnames have this appended to the start
 

@@ -25,14 +25,14 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `securesends`
 --
 
-CREATE TABLE IF NOT EXISTS `securesends` (
+CREATE TABLE `securesends` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `url` varchar(8) NOT NULL,
-  `pass` text NOT NULL,
+  `url` char(8) NOT NULL,
+  `pass` char(44) NOT NULL,
   `expiration_date` date NOT NULL,
-  `expiration_views` int(10) unsigned NOT NULL,
+  `expiration_views` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
