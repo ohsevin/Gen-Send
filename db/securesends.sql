@@ -28,11 +28,11 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE `securesends` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `url` char(8) NOT NULL,
-  `pass` char(44) NOT NULL,
+  `pass` char(255) NOT NULL,
   `expiration_date` date NOT NULL,
   `expiration_views` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
