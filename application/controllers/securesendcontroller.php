@@ -202,6 +202,8 @@ class SecuresendController extends GNSND_VanillaController {
             $errors[] = 'Invalid URL'; // add invalid URL message onto errors (DB row doesn't exist with that URL)
             $this->set('errors', $errors);
         }
+
+        $this->meta['noFollow'] = true;
     }
 
 	public function help()
