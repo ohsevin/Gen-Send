@@ -218,7 +218,9 @@ class SecuresendController extends GNSND_VanillaController {
         // check the 3rd URL segment against our random hash in the config.
         
         $hash = $this->url->segment(3);
-        
+
+        $deleteSuccessful = false; // used with config items to determine whether emails send out or not.
+
         if($hash == CONFIG_HASH) // success, it matches
         {
             // crawl throuh DB and remove time-expired passwords!
@@ -226,6 +228,7 @@ class SecuresendController extends GNSND_VanillaController {
             if($this->securesend->delete_expired()) // if we successfully deleted out of date entries
             {
                 $status = "SUCCESSFUL DELETION";
+                $deleteSuccessful = true;
             }
             else
             {
@@ -259,8 +262,8 @@ HTML;
         $headers = 'From: ' . SYSADMIN_EMAIL . PHP_EOL .
             'Reply-To: ' . SYSADMIN_EMAIL . PHP_EOL .
             'X-Mailer: PHP/' . phpversion();
-        
-        if(!DEVELOPMENT_ENVIRONMENT)
+
+        if(!DEVELOPMENT_ENVIRONMENT && (($deleteSuccessful && CRON_SUCCESSFUL_EMAIL) || (!$deleteSuccessful && CRON_NOT_SUCCESSFUL_EMAIL)))
         {
             mail(SYSADMIN_EMAIL, $subject, $message, $headers);
         }

@@ -62,3 +62,6 @@ define('META_KEYWORDS_DEFAULT', '');
 
 define('META_DESCRIPTION_APPEND', '');
 define('META_DESCRIPTION_DEFAULT', '');
+
+define('CRON_SUCCESSFUL_EMAIL', true);
+define('CRON_NOT_SUCCESSFUL_EMAIL', true);
