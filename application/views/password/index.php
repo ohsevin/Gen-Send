@@ -98,7 +98,7 @@
             <strong>This page is secure.</strong>
         </p>
         <p>
-            All data on this page is encrypted and sent over SSL.
+            Your connection to this site is encrypted.
         </p>
         <p>
             No passwords are stored when generated <strong>unless you send them securely to the <a href="send/">Secure-send tool.</a><br />This is not done unless you click the "Transfer to secure send tool..." button and complete the form.</strong>

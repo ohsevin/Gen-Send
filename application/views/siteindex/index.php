@@ -16,7 +16,7 @@
             <strong>This page is secure.</strong>
         </p>
         <p>
-            All data on this page is encrypted and sent over SSL.
+            Your connection to this site is encrypted.
         </p>
         <?php endif; ?>
         <p>

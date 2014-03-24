@@ -64,10 +64,10 @@
             <strong>This page is secure.</strong>
         </p>
         <p>
-            All data on this page is encrypted and sent over SSL.
+            Your connection to this site is encrypted.
         </p>
         <p>
-            All passwords are deleted from the database when they expire. <br />(either through views or time)
+            All passwords are deleted from the database when they expire, either by expiration date or by exceeding their designated number of views, whichever comes first.
         </p>
         <?php endif; ?>
         <p>

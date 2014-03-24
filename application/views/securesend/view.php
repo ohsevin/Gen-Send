@@ -18,7 +18,7 @@
                 <strong>This page is secure.</strong>
             </p>
             <p>
-                All data on this page is encrypted and sent over SSL.
+                Your connection to this site is encrypted.
             </p>
             <p>
                 All passwords are deleted from the database when they expire. <br />(either through views or time)
