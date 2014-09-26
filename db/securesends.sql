@@ -27,7 +27,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE `securesends` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `url` char(8) NOT NULL,
+  `url` varchar(8) BINARY NOT NULL,
   `pass` char(255) NOT NULL,
   `expiration_date` date NOT NULL,
   `expiration_views` tinyint(3) unsigned NOT NULL,
