@@ -28,7 +28,7 @@
             <ul>
                 <li><label for="length">Length:</label> <input type="text" maxlength="2" name="input[length]" id="length" value="<?php echo isset($post['input']['length']) ? htmlentities($post['input']['length'], ENT_QUOTES) : $default_password_length ; ?>" /></li>
                 <li>
-                    <label for="non_similar_lowercase">Letters:</label>
+                    <label for="non_similar_lowercase">Lower Case:</label>
                     <input id="non_similar_lowercase" type="checkbox" name="options[non_similar_lowercase]" value="true"
                     <?php if(isset($post['submit'])): ?>
                         <?php if(isset($post['options']['non_similar_lowercase'])): ?>
@@ -40,7 +40,7 @@
                     />
                 </li>
                 <li>
-                    <label for="non_similar_uppercase">Mixed Case:</label>
+                    <label for="non_similar_uppercase">Upper Case:</label>
                     <input id="non_similar_uppercase" type="checkbox" name="options[non_similar_uppercase]" value="true"
                     <?php if(isset($post['submit'])): ?>
                         <?php if(isset($post['options']['non_similar_uppercase'])): ?>
