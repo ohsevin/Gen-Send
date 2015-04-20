@@ -54,9 +54,10 @@ class GNSND_VanillaModel {
             }
 
             $updates = substr($updates,0,-1); // remove final comma
-            $query = 'UPDATE ' . $this->_table . ' SET ' . $updates . ' WHERE `id`=' . (int)$this->id . '';
+            $query = 'UPDATE :dbTable SET ' . $updates . ' WHERE `id`=' . (int)$this->id . '';
             $run_query = $this->db->prepare($query);
             
+            $run_query->bindParam(':dbTable', $this->_table);
             // let's go through and bind our parameters
             foreach ($this->_describe as $field) {
                 if ($this->$field) {
@@ -80,9 +81,11 @@ class GNSND_VanillaModel {
             $values = substr($values,0,-2); // remove final comma
             $fields = substr($fields,0,-1); // remove final comma
 
-            $query = "INSERT INTO ".$this->_table." ($fields) VALUES ($values)";
+            $query = "INSERT INTO :dbTable ($fields) VALUES ($values)";
             $run_query = $this->db->prepare($query);
             
+            
+            $run_query->bindParam(':dbTable', $this->_table);
             foreach ($this->_describe as $field) {
                 if ($field != 'id') {
                     $run_query->bindParam($this->_field_to_param($field), $this->$field);
@@ -125,9 +128,11 @@ class GNSND_VanillaModel {
         }
         else
         {            
-            $query = 'SELECT * FROM ' . $this->_table . ' WHERE id = :id';
+            $query = 'SELECT * FROM :dbTable WHERE id = :id';
+            
             
             $run_query = $this->db->prepare($query);
+            $run_query->bindParam(':dbTable', $this->_table);
             $run_query->bindParam(':id', $id, PDO::PARAM_INT);
             $run_query->execute();
             
@@ -154,9 +159,10 @@ class GNSND_VanillaModel {
         if($this->exists())
         {
             // delete
-            $query = 'DELETE FROM ' . $this->_table . ' WHERE id = :id';
+            $query = 'DELETE FROM :dbTable WHERE id = :id';
             
             $run_query = $this->db->prepare($query);
+            $run_query->bindParam(':dbTable', $this->_table);
             $run_query->bindParam(':id', $this->id, PDO::PARAM_INT);
             
             
