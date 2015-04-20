@@ -16,8 +16,9 @@ class Securesend extends GNSND_VanillaModel {
             return false;
         }
         
-        $query = 'SELECT * FROM `' . $this->_table .'` WHERE `url` = :url';
+        $query = 'SELECT * FROM `:dbTable` WHERE `url` = :url';
         $statement = $this->db->prepare($query);
+        $statement->bindParam(':dbTable', $this->_table);
         $statement->bindParam(':url', $url);
         $statement->execute();
         
@@ -51,7 +52,7 @@ class Securesend extends GNSND_VanillaModel {
         $default_date = '0000-00-00'; // used for view-based storage
         
         // we'll hash over expired records to increase security before we delete them
-        $hash_query = "UPDATE `" . $this->_table . "` SET `pass` = :randomhash, `url` = :randomurlhash WHERE `expiration_date` < :date AND `expiration_date` <> :defaultdate ";
+        $hash_query = "UPDATE `:dbTable` SET `pass` = :randomhash, `url` = :randomurlhash WHERE `expiration_date` < :date AND `expiration_date` <> :defaultdate ";
         
         $this->load_helper('string');
 		$this->load_helper('crypt', 'crypt'); // load our crypt helper to generate secure random numbers
@@ -66,6 +67,7 @@ class Securesend extends GNSND_VanillaModel {
         
         $hash_run_query = $this->db->prepare($hash_query);
         
+        $hash_run_query->bindParam(':dbTable', $this->_table);
         $hash_run_query->bindParam(':randomhash', $random_hash);
         $hash_run_query->bindParam(':randomurlhash', $random_url_hash);
         $hash_run_query->bindParam(':date', $date);
@@ -74,8 +76,9 @@ class Securesend extends GNSND_VanillaModel {
         $hash_result = $hash_run_query->execute();
         
         // now just delete them
-        $query = "DELETE FROM `" . $this->_table . "` WHERE `expiration_date` < :date AND `expiration_date` <> :defaultdate ";
+        $query = "DELETE FROM `:dbTable` WHERE `expiration_date` < :date AND `expiration_date` <> :defaultdate ";
         $run_query = $this->db->prepare($query);
+        $run_query->bindParam(':dbTable', $this->_table);
         $run_query->bindParam(':date', $date);
         $run_query->bindParam(':defaultdate', $default_date);
         
@@ -105,7 +108,7 @@ class Securesend extends GNSND_VanillaModel {
     protected function _delete_secure() // hashes random information over the password before we delete it.
     {
         // we'll hash over expired records to increase security before we delete them
-        $hash_query = "UPDATE `" . $this->_table . "` SET `pass` = :random-hash, `url` = :random-url-hash WHERE `id` = :id";
+        $hash_query = "UPDATE `:dbTable` SET `pass` = :random-hash, `url` = :random-url-hash WHERE `id` = :id";
         
         $this->load_helper('string');
 		$this->load_helper('crypt', 'crypt'); // load our crypt helper to generate secure random numbers
@@ -120,6 +123,7 @@ class Securesend extends GNSND_VanillaModel {
         
         $hash_run_query = $this->db->prepare($hash_query);
         
+        $hash_run_query->bindParam(':dbTable', $this->_table);
         $hash_run_query->bindParam(':random-hash', $random_hash);
         $hash_run_query->bindParam(':random-url-hash', $random_url_hash);
         $hash_run_query->bindParam(':id',  $this->id);
@@ -134,8 +138,9 @@ class Securesend extends GNSND_VanillaModel {
             $url = $this->url;
         }
         
-        $query = 'SELECT * FROM `' . $this->_table .'` WHERE `url` = :url';
+        $query = 'SELECT * FROM `:dbTable` WHERE `url` = :url';
         $statement = $this->db->prepare($query);
+        $statement->bindParam(':dbTable', $this->_table);
         $statement->bindParam(':url', $url);
         $statement->execute();
         if($statement->rowCount() == 0)
